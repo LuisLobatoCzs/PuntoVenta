@@ -21,4 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/sell', 'HomeController@sell')->name('sell');
 
-Route::get('/employees', 'HomeController@employees')->name('employees');
+Route::get('/employees','HomeController@employees')->name('employees');
+
+Route::get('/products','HomeController@products')->name('products');
