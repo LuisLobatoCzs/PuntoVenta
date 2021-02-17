@@ -38,5 +38,9 @@ class HomeController extends Controller
 
     public function employees(){
         return view('employees');
-    }
+    } 
+
+    public function products(){
+        return view('products');
+    } 
 }
