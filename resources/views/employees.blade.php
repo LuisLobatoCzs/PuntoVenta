@@ -5,11 +5,11 @@
 <br>
 <div class="row">
     
-        <div class="col-9 text-center">
+        <div class="col-9 col-sm-3 col-md-6 text-center">
             <h3>Administración de empleados</h3>
         </div>
-        <div class="col-3">
-            <button class="btn btn-secondary">Agregar Empleado</button>
+        <div class="col-3 col-sm-1 col-md">
+            <button class="btn btn-warning">Agregar Empleado</button>
         </div>   
     <br><br><br><br>
  </div>    
@@ -22,7 +22,6 @@
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Telefono</th>
-                        <th>Contraseña<th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +29,6 @@
                         <td>Mariana G</td>
                         <td>2214068655</td>
                         <td>marigoislas@gmail.com</td>
-                        <td>*********</td>
                         <td><button class="btn btn-primary">Modificar</button></td>
                         <td><button class="btn btn-secondary">Eliminar</button></td>
                     </tr>
@@ -38,7 +36,6 @@
                         <td>Luis L</td>
                         <td>2214068655</td>
                         <td>lalc@gmail.com</td>
-                        <td>*********</td>
                         <td><button class="btn btn-primary">Modificar</button></td>
                         <td><button class="btn btn-secondary">Eliminar</button></td>
                     </tr>
