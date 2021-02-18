@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col-12 cuadro cuadroP">
                             <div class="row justify-content-center">
-                                <label class="form col-10" for="product">Agregar productos:</label>
+                                <label class="form col-10" for="product"><h6>Agregar productos:</h6></label>
                                 <input class="form-control col-10" type="text" placeholder="Ingresa el código de barras">
                                 <button class="btn btn-success col-10">Agregar</button>
                             </div>
@@ -97,7 +97,7 @@
                     <div class="row">    
                         <div class="col-12 cuadro cuadroP">
                             <div class="row justify-content-center">
-                                <label class="col-10" for="">Ingrese pago:</label>
+                                <label class="col-10" for=""><h6>Ingrese pago:</h6></label>
                                 <div class="col-10">
                                     <div class="row centrarY ">
                                         <div class="col-2 box">$</div>
@@ -114,7 +114,7 @@
                     <div class="row pl-md-4">
                         <div class="col-12 cuadro altura lista">
                             <br>
-                            Lista de compras de compras
+                            <h5>Lista de compras de compras</h5>
                             <hr>
                             <div class="table-reesponse">
                                 <table class="table table-hover">
