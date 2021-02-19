@@ -9,7 +9,7 @@
             <h3>Administrar productos</h3>
         </div>
         <div class="col-3">
-            <button class="btn btn-secondary">Agregar producto</button>
+            <button class="btn btn-warning">Agregar producto</button>
         </div>   
     <br><br><br><br>
  </div>    
@@ -35,7 +35,7 @@
                         <td>$15</td>
                         <td>Refrescos</td>
                         <td>10</td>
-                        <td><button class="btn btn-primary">Modificar</button></td>
+                        <td><button class="btn btn-info">Modificar</button></td>
                         <td><button class="btn btn-secondary">Eliminar</button></td>
                     </tr>
                 </tbody>
