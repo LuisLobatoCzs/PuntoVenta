@@ -41,14 +41,14 @@
                                 <td>Mariana G</td>
                                 <td>2214068655</td>
                                 <td>marigoislas@gmail.com</td>
-                                <td><button class="btn btn-info">Modificar</button></td>
+                                <td><a href="/modifyE"><button class="btn btn-info">Modificar</button></a></td>
                                 <td><button class="btn btn-secondary ">Eliminar</button></td>
                             </tr>
                             <tr>
                                 <td>Luis L</td>
                                 <td>2214068655</td>
                                 <td>lalc@gmail.com</td>
-                                <td><button class="btn btn-info">Modificar</button></td>
+                                <td><a href="/modifyE"><button class="btn btn-info">Modificar</button></a></td>
                                 <td><button class="btn btn-secondary">Eliminar</button></td>
                             </tr>
                         </tbody>

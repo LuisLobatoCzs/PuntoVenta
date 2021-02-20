@@ -24,3 +24,9 @@ Route::get('/sell', 'HomeController@sell')->name('sell');
 Route::get('/employees','HomeController@employees')->name('employees');
 
 Route::get('/products','HomeController@products')->name('products');
+
+Route::get('/modifyE','HomeController@modifyE')->name('modifyE');
+
+Route::get('/modifyP','HomeController@modifyP')->name('modifyP');
+
+

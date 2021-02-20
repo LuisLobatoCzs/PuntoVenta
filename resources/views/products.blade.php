@@ -47,7 +47,7 @@
                             <td>$15</td>
                             <td>Refrescos</td>
                             <td>10</td>
-                            <td><button class="btn btn-info">Modificar</button></td>
+                            <td><a href="/modifyP"><button class="btn btn-info">Modificar</button></a></td>
                             <td><button class="btn btn-secondary">Eliminar</button></td>
                         </tr>
                     </tbody>
