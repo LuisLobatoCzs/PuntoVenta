@@ -20,7 +20,7 @@
             <h3>Administrar productos</h3>
         </div>
         <div class="col-12 col-md-3 text-center">
-            <button class="btn btn-warning col-10">Agregar producto</button>
+        <a href="/addProducts"><button class="btn btn-warning col-10">Agregar Empleado</button></a>
         </div>   
     <br><br><br><br>
  </div>    

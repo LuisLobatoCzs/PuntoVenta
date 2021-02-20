@@ -29,4 +29,9 @@ Route::get('/modifyE','HomeController@modifyE')->name('modifyE');
 
 Route::get('/modifyP','HomeController@modifyP')->name('modifyP');
 
+Route::get('/addEmployees','HomeController@addEmployees')->name('addEmployees');
+
+Route::get('/addProducts','HomeController@addProducts')->name('addProducts');
+
+
 

@@ -51,4 +51,12 @@ class HomeController extends Controller
     public function modifyP(){
         return view('modifyP');
     } 
+
+    public function addEmployees(){
+        return view('addEmployees');
+    } 
+
+    public function addProducts(){
+        return view('addProducts');
+    } 
 }

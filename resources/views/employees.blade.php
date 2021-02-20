@@ -20,7 +20,7 @@
                 <h4>Administrar empleados</h4>
             </div>
             <div class="col-12 col-md-3 text-center">
-                <button class="btn btn-warning col-10">Agregar Empleado</button>
+                <a href="/addEmployees"><button class="btn btn-warning col-10">Agregar Empleado</button></a>
             </div>   
         
     </div>    
