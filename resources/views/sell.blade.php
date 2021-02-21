@@ -133,7 +133,7 @@
                                     <tbody>
                                         <?php
                                             $i=0;
-                                            for($i; $i<200; $i++){
+                                            for($i; $i<20; $i++){
                                                 echo '
                                                     <tr>
                                                         <td><button class="btn btn-info">-</button><button class="btn btn-danger">+</button></td>
