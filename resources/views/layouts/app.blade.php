@@ -21,7 +21,7 @@
     <script src="{{ asset('js/angularJS/1.8.2.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/indexController.js') }}"></script>
 </head>
-<body">
+<body ng-app="tiendita">
     <div id="app">
         <nav class="navbar navbar-dark bg-primary shadow-sm navbar-static-top">
             <div class="container">

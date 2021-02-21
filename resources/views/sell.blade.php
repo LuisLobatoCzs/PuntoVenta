@@ -64,7 +64,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-12">
+<script src="/js/indexController.js"></script>
+
+<div ng-controller="controllerTiendita" class="col-12">
+<code> @{{ m.total }} </code>
     <div class="row justify-content-center">
         <div class="col-11">
             @if (session('status'))
