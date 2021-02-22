@@ -74,16 +74,13 @@
                                             <option value="1">Selecciona una opción</option>
                                             <option value="2">Bebidas</option>
                                             <option value="3" >Embutidos</option>
-                                            <option value="4">Lácteos</option>
-                                            <option value="5">Frituras</option>
+                                            <option value="4">Lácteos/Quesos</option>
+                                            <option value="5">Frituras/Golosinas</option>
                                             <option value="6">Comestibles</option>
-                                            <option value="7" >Detergente</option>
-                                            <option value="8">Aceites</option>
-                                            <option value="9">Papel</option>
-                                            <option value="10">Mascotas</option>
-                                            <option value="11" >Frutas</option>
-                                            <option value="12">Verduras</option>
-                                            <option value="13">Cereales</option>
+                                            <option value="7" >Higiene/Limpieza</option>
+                                            <option value="8">Mascotas</option>
+                                            <option value="9" >Frutas/Verduras</option>
+                                            <option value="10">Miselaneos</option>
                                     </select>
                                 </div>
                             </div>
