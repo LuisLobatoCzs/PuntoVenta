@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         if(Auth::user()->rol == 0){
             return view('admin');
         }
@@ -59,4 +60,30 @@ class HomeController extends Controller
     public function addProducts(){
         return view('addProducts');
     } 
+
+    public function createJSON(){
+        $consulta = DB::table('productos')
+                        ->select('codigoBarras', 'nombre', 'precioVenta', 'stock', 'unidadMedida')
+                        ->get();
+        $total = $consulta->count();
+        
+        $productos='{ "productos": [';
+        for($i=0; $i<$total; $i++){
+            $productos = $productos.'{';
+            $productos = $productos.'"codigoBarras": "'.$consulta[$i]->codigoBarras.'",';
+            $productos = $productos.'"nombre": "'.$consulta[$i]->nombre.'",';
+            $productos = $productos.'"precioVenta": "'.$consulta[$i]->precioVenta.'",';
+            $productos = $productos.'"stock": "'.$consulta[$i]->stock.'",';
+            $productos = $productos.'"unidadMedida": "'.$consulta[$i]->unidadMedida.'"';
+            if($i == $total-1){
+                $productos = $productos.'}';
+            }
+            else{
+                $productos = $productos.'},';
+            }
+        }
+        $productos = $productos.'] }';
+        //$productos = json_encode($productos);
+        return $productos;
+    }
 }

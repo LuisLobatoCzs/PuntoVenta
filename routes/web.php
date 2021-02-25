@@ -33,5 +33,8 @@ Route::get('/addEmployees','HomeController@addEmployees')->name('addEmployees');
 
 Route::get('/addProducts','HomeController@addProducts')->name('addProducts');
 
+Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
+
+
 
 
