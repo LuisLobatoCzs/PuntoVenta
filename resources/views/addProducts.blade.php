@@ -70,7 +70,18 @@
                             <div class="row centrarY">
                                 <label for="Categoria" class="col-lg-4 col-xl-4 text-right control-label">Categoría:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="categoria" placeholder="Ingresa categoría" type="text" class="form-control" name="Categoria" required>
+                                    <select name="select" class="form-control">
+                                            <option value="1">Selecciona una opción</option>
+                                            <option value="2">Bebidas</option>
+                                            <option value="3" >Embutidos</option>
+                                            <option value="4">Lácteos/Quesos</option>
+                                            <option value="5">Frituras/Golosinas</option>
+                                            <option value="6">Comestibles</option>
+                                            <option value="7" >Higiene/Limpieza</option>
+                                            <option value="8">Mascotas</option>
+                                            <option value="9" >Frutas/Verduras</option>
+                                            <option value="10">Miselaneos</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
