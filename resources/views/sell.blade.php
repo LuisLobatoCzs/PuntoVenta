@@ -1,9 +1,4 @@
-<!-- AngularJS -->
-<script src="{{ asset('js/angularJS/1.8.2.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/indexController.js') }}"></script>
-    
 <style>
-
     .cuadro{
         padding: 0px;
         text-align: center;
@@ -68,7 +63,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-12" >
+<div class="col-12" ng-init="export()">
     <div class="row justify-content-center">
         <div class="col-11">
             @if (session('status'))
@@ -77,29 +72,27 @@
                 </div>
             @endif
             <br>
-            <div class="row centrarXY altura">
+            <div class="row centrarXY">
                 <div class="col-12 col-md-3">
                     <div class="row">
-                        <div class="col-12 cuadro cuadroP">
+                        <form class="col-12 cuadro cuadroP">
                             <div class="row justify-content-center">
                                 <label class="form col-10" for="product"><h6>Agregar productos:</h6></label>
                                 <input class="form-control col-10" type="text" placeholder="Ingresa el código de barras" ng-model="codigoBarras">
                                 <button class="btn btn-success col-10" ng-click="setArticulo()">Agregar</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <br>
                     <div class="row">
-                        <div class="col-12 cuadro cuadroP">
+                        <form class="col-12 cuadro cuadroP">
                             <div class="row justify-content-center">
                                 <label for="" class="col-12"><h3>Total</h3></label>
                                 <label for="" class="col-12"><h1>$@{{ total }}</h1></label>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <br>
-                    <div class="row">    
-                        <div class="col-12 cuadro cuadroP">
+                    <div class="row">  
+                        <form class="col-12 cuadro cuadroP">
                             <div class="row justify-content-center">
                                 <label class="col-10" for=""><h6>Ingrese pago:</h6></label>
                                 <div class="col-10">
@@ -110,9 +103,8 @@
                                 </div>
                                 <button class="btn btn-danger col-10" ng-click="setPago()">Cobrar</button>
                             </div>
-                        </div>
-                    </div>
-                    <br>                    
+                        </form>  
+                    </div>                 
                 </div>
                 <div class="col-12 col-md-9">
                     <div class="row pl-md-4">

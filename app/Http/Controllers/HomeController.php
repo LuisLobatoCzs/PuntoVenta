@@ -83,7 +83,6 @@ class HomeController extends Controller
             }
         }
         $productos = $productos.'] }';
-        //$productos = json_encode($productos);
         return $productos;
     }
 }

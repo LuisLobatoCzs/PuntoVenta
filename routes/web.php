@@ -33,8 +33,28 @@ Route::get('/addEmployees','HomeController@addEmployees')->name('addEmployees');
 
 Route::get('/addProducts','HomeController@addProducts')->name('addProducts');
 
-Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
-
+//Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
+Route::get('/productsJSON', function (){
+    $consulta = DB::table('productos')->select('codigoBarras', 'nombre', 'precioVenta', 'stock', 'unidadMedida')->get();
+    $total = $consulta->count();
+    $productos='{ "productos": [';
+    for($i=0; $i<$total; $i++){
+        $productos = $productos.'{';
+        $productos = $productos.'"codigoBarras": "'.$consulta[$i]->codigoBarras.'",';
+        $productos = $productos.'"nombre": "'.$consulta[$i]->nombre.'",';
+        $productos = $productos.'"precioVenta": "'.$consulta[$i]->precioVenta.'",';
+        $productos = $productos.'"stock": "'.$consulta[$i]->stock.'",';
+        $productos = $productos.'"unidadMedida": "'.$consulta[$i]->unidadMedida.'"';
+        if($i == $total-1){
+            $productos = $productos.'}';
+        }
+        else{
+            $productos = $productos.'},';
+        }
+    }
+    $productos = $productos.'] }';
+    return $productos;
+});
 
 
 

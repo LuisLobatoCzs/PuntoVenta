@@ -5,8 +5,12 @@ var app = angular.module("tiendita", [])
     $scope.consultar = function () {
         $http.get('/productsJSON')
             .then(function (response) { $scope.productos = response.data.productos });
+        console.log("Productos exportados");
     }
-    $scope.consultar();
+    $scope.export = function () {
+        console.log("Exportando................");
+        $scope.consultar();
+    }
     /////////////////////////////////////////////////////////
     
     $scope.total = 0;
@@ -143,7 +147,10 @@ var app = angular.module("tiendita", [])
             if ($scope.pago >= $scope.total) {
                 if ($scope.pago > $scope.total) {
                     $scope.cambio = $scope.pago - $scope.total;
-                    alert("Cambio: $" + $scope.cambio);
+                    //alert("Cambio: $" + $scope.cambio);
+                    Swal.fire({
+                        html: '<h1>Cambio: $' + $scope.cambio + '</h1>',
+                    });
                 }
                 $scope.total = 0;
                 $scope.articulos = [];

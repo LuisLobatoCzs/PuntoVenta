@@ -27,6 +27,9 @@
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
+    <!-- SweetAlert -->
+    <script src="{{ asset('js/sweetAlert.js') }}"></script>
+
 </head>
 <body ng-controller="controllerTiendita">
     <div>
