@@ -42,7 +42,11 @@ class HomeController extends Controller
     } 
 
     public function products(){
-        return view('products');
+        $productos = DB::table('productos')
+                        ->orderBy('nombre')
+                        ->get();
+        $totalProductos = $productos->count();
+        return view('products')->with(compact('productos','totalProductos'));
     } 
 
     public function modifyE(){

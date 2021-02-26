@@ -40,16 +40,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>015896354</td>
-                            <td>Coca-cola</td>
-                            <td>$10</td>
-                            <td>$15</td>
-                            <td>Refrescos</td>
-                            <td>10</td>
-                            <td><a href="/modifyP"><button class="btn btn-info">Modificar</button></a></td>
-                            <td><button class="btn btn-secondary">Eliminar</button></td>
-                        </tr>
+                        <?php
+                            $i=0;
+                            while($i < $totalProductos){
+                                echo '
+                                    <tr>
+                                        <td>'.$productos[$i]->codigoBarras.'</td>
+                                        <td>'.$productos[$i]->nombre.'</td>
+                                        <td>'.$productos[$i]->precioCompra.'</td>
+                                        <td>'.$productos[$i]->precioVenta.'</td>
+                                        <td>'.$productos[$i]->categoria.'</td>
+                                        <td>'.$productos[$i]->stock.'</td>
+                                        <td><a href="/modifyP"><button class="btn btn-info">Modificar</button></a></td>
+                                        <td><button class="btn btn-secondary">Eliminar</button></td>
+                                    </tr>
+                                ';
+                                $i++;
+                            }
+                        ?>
                     </tbody>
                 </table>
              </div>
