@@ -11,10 +11,10 @@
     <div class="row centraY">
         
             <div class="col-12 col-md-8 text-center">
-                <h4>Administrar empleados</h4>
+                <h1>Total $3500</h1>
             </div>
             <div class="col-12 col-md-3 text-center">
-                <a href="/addEmployees"><button class="btn btn-warning col-10">Agregar Empleado</button></a>
+                <a href="/addExpenses"><button class="btn btn-warning col-10">Agregar gastos</button></a>
             </div>   
         
     </div>    
@@ -25,25 +25,25 @@
                     <table class="table">
                         <thead class="thead">
                             <tr>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Telefono</th>
+                                <th>Concepto</th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Mariana G</td>
-                                <td>2214068655</td>
-                                <td>marigoislas@gmail.com</td>
-                                <td><a href="/modifyE"><button class="btn btn-info">Modificar</button></a></td>
-                                <td><button class="btn btn-secondary ">Eliminar</button></td>
+                                <td>Mariana G - venta</td>
+                                <td>15/02/2021</td>
+                                <td>$3000</td>
+                            <tr>
+                                <td>Luis L - venta</td>
+                                <td>17/02/2021</td>
+                                <td>$1000</td>
                             </tr>
                             <tr>
-                                <td>Luis L</td>
-                                <td>2214068655</td>
-                                <td>lalc@gmail.com</td>
-                                <td><a href="/modifyE"><button class="btn btn-info">Modificar</button></a></td>
-                                <td><button class="btn btn-secondary">Eliminar</button></td>
+                                <td>Administrador - compra</td>
+                                <td>17/02/2021</td>
+                                <td>-$500</td>
                             </tr>
                         </tbody>
                     </table>

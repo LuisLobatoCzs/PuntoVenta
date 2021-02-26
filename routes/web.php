@@ -33,6 +33,10 @@ Route::get('/addEmployees','HomeController@addEmployees')->name('addEmployees');
 
 Route::get('/addProducts','HomeController@addProducts')->name('addProducts');
 
+Route::get('/addExpenses','HomeController@addExpenses')->name('addExpenses');
+
+Route::get('/reports','HomeController@reports')->name('reports');
+
 //Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
 Route::get('/productsJSON', function (){
     $consulta = DB::table('productos')->select('codigoBarras', 'nombre', 'precioVenta', 'stock', 'unidadMedida')->get();
