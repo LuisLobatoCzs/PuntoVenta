@@ -61,6 +61,14 @@ class HomeController extends Controller
         return view('addProducts');
     } 
 
+    public function reports(){
+        return view('reports');
+    } 
+
+    public function addExpenses(){
+        return view('addExpenses');
+    } 
+
     public function createJSON(){
         $consulta = DB::table('productos')
                         ->select('codigoBarras', 'nombre', 'precioVenta', 'stock', 'unidadMedida')
