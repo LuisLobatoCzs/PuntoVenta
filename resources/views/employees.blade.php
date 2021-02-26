@@ -31,20 +31,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Mariana G</td>
-                                <td>2214068655</td>
-                                <td>marigoislas@gmail.com</td>
-                                <td><a href="/modifyE"><button class="btn btn-info">Modificar</button></a></td>
-                                <td><button class="btn btn-secondary ">Eliminar</button></td>
-                            </tr>
-                            <tr>
-                                <td>Luis L</td>
-                                <td>2214068655</td>
-                                <td>lalc@gmail.com</td>
-                                <td><a href="/modifyE"><button class="btn btn-info">Modificar</button></a></td>
-                                <td><button class="btn btn-secondary">Eliminar</button></td>
-                            </tr>
+                        <?php
+                            $i=0;
+                            while($i < $Empleados){
+                                echo '
+                                    <tr>
+                                        <td>'.$empleados[$i]->name.'</td>
+                                        <td>'.$empleados[$i]->email.'</td>
+                                        <td>'.$empleados[$i]->phone.'</td>
+                                        <td><a href="/modifyP"><button class="btn btn-info">Modificar</button></a></td>
+                                        <td><button class="btn btn-secondary">Eliminar</button></td>
+                                    </tr>
+                                ';
+                                $i++;
+                            }
+                        ?>
                         </tbody>
                     </table>
                 </div>
