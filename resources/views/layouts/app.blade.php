@@ -13,7 +13,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Punto de Venta</title>
 
     <!-- Styles Bootstrap -->
     <link href="{{ asset('css/bootstrap-minty.css') }}" rel="stylesheet">

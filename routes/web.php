@@ -42,36 +42,28 @@ Route::get('/modifyE','HomeController@modifyE')->name('modifyE');
 
 Route::get('/modifyP','HomeController@modifyP')->name('modifyP');
 
+Route::post('/updateEmployee', 'HomeController@updateUser')->name('updateEmployee');
+
+Route::get('/deleteEmployee', 'HomeController@deleteEmployee')->name('deleteEmployee');
+
 Route::get('/addEmployees','HomeController@addEmployees')->name('addEmployees');
+
+Route::post('/addEmployees', 'HomeController@addEmployee')->name('addEmployees');
 
 Route::get('/addProducts','HomeController@addProducts')->name('addProducts');
 
+Route::post('/addProducts', 'HomeController@addProduct')->name('addProducts');
+
 Route::get('/addExpenses','HomeController@addExpenses')->name('addExpenses');
+
+Route::post('/addExpenses', 'HomeController@addExpense')->name('addExpenses');
 
 Route::get('/reports','HomeController@reports')->name('reports');
 
-//Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
-Route::get('/productsJSON', function (){
-    $consulta = DB::table('productos')->select('codigoBarras', 'nombre', 'precioVenta', 'stock', 'unidadMedida')->get();
-    $total = $consulta->count();
-    $productos='{ "productos": [';
-    for($i=0; $i<$total; $i++){
-        $productos = $productos.'{';
-        $productos = $productos.'"codigoBarras": "'.$consulta[$i]->codigoBarras.'",';
-        $productos = $productos.'"nombre": "'.$consulta[$i]->nombre.'",';
-        $productos = $productos.'"precioVenta": "'.$consulta[$i]->precioVenta.'",';
-        $productos = $productos.'"stock": "'.$consulta[$i]->stock.'",';
-        $productos = $productos.'"unidadMedida": "'.$consulta[$i]->unidadMedida.'"';
-        if($i == $total-1){
-            $productos = $productos.'}';
-        }
-        else{
-            $productos = $productos.'},';
-        }
-    }
-    $productos = $productos.'] }';
-    return $productos;
-});
+Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
 
+Route::post('/updateProduct', 'HomeController@updateProduct')->name('updateProduct');
+
+Route::get('/deleteProduct', 'HomeController@deleteProduct')->name('deleteProduct');
 
 

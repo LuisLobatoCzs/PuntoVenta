@@ -26,15 +26,24 @@
         <div class="col-xl-5 cuadro">
             <div class="card border-primary mb-3">
                 <div class="card-header">
-                    Modificar empleado
+                    <div class="row centrarY">
+                        <div class="col-11">
+                            Agregar empleado
+                        </div>
+                        <div class="col-1">
+                            <a href="/employees" class="row justify-content-center">
+                                <button type="button" class="btn btn-secondary"><b>X</b></button>                                
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <form class="col-12"  method="POST">
+                    <form class="col-12" action="{{ route('addEmployees') }}" method="POST">
                         {{ csrf_field() }} 
                         
                         <div class="form-group">
                             <div class="row centrarY">
-                                <label for="user" class="col-lg-4 col-xl-4 text-right control-label">Usuario:</label>
+                                <label for="user" class="col-lg-4 col-xl-4 text-right control-label">*Usuario:</label>
                                 <div class="col-lg-7 col-xl-7">
                                     <input id="user" placeholder="Ingresa nombre de usuario" type="text" class="form-control" name="user" value="{{ old('name') }}" required autofocus>
                                 </div>
@@ -43,26 +52,26 @@
 
                         <div class="form-group">
                             <div class="row centrarY">
-                                <label for="password" class="col-lg-4 col-xl-4 text-right control-label">Contraseña:</label>
+                                <label for="password" class="col-lg-4 col-xl-4 text-right control-label">*Contraseña:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="password" placeholder="Ingresa contraseña" type="password" class="form-control" name="password" required>
+                                    <input id="password" placeholder="Ingresa contraseña" type="text" class="form-control" name="password" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row centrarY">
-                                <label for="Email" class="col-lg-4 col-xl-4 text-right control-label">Email:</label>
+                                <label for="email" class="col-lg-4 col-xl-4 text-right control-label">Email:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="Email" placeholder="Ingresa email" type="text" class="form-control" name="Email" required>
+                                    <input id="email" placeholder="Ingresa email" type="text" class="form-control" name="email">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row centrarY">
-                                <label for="password-confirm" class="col-lg-4 col-xl-4 text-right control-label">Telefono:</label>
+                                <label for="phone" class="col-lg-4 col-xl-4 text-right control-label">Telefono:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="Telefono" placeholder="Ingresa Telefono" type="text" class="form-control" name="Telefono" required>
+                                    <input id="phone" placeholder="Ingresa Telefono" type="text" class="form-control" name="phone">
                                 </div>
                             </div>
                         </div>
@@ -71,7 +80,7 @@
                         <div class="form-group">
                             <div class="row justify-content-center">
                                 <div class="col-11 text-right">
-                                    <button class="btn btn-primary btn-block">Agregar empleado</button>                                
+                                    <button type="submit" class="btn btn-primary btn-block">Agregar empleado</button>                                
                                 </div>
                             </div>
                         </div>

@@ -31,12 +31,13 @@
                 <table class="table">
                     <thead class="thead">
                         <tr>
-                            <th>Código</th>
+                            <th class="text-center">Código</th>
                             <th>Nombre</th>
-                            <th>Compra</th>
-                            <th>Venta</th>
-                            <th>Categoria</th>
-                            <th>Stock</th>    
+                            <th class="text-center">Compra</th>
+                            <th class="text-center">Venta</th>
+                            <th class="text-center">Categoria</th>
+                            <th class="text-center">Stock</th>
+                            <th class="text-center">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,14 +46,13 @@
                             while($i < $totalProductos){
                                 echo '
                                     <tr>
-                                        <td>'.$productos[$i]->codigoBarras.'</td>
+                                        <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                         <td>'.$productos[$i]->nombre.'</td>
-                                        <td>'.$productos[$i]->precioCompra.'</td>
-                                        <td>'.$productos[$i]->precioVenta.'</td>
-                                        <td>'.$productos[$i]->categoria.'</td>
-                                        <td>'.$productos[$i]->stock.'</td>
-                                        <td><a href="/modifyP"><button class="btn btn-info">Modificar</button></a></td>
-                                        <td><button class="btn btn-secondary">Eliminar</button></td>
+                                        <td class="text-center">'.$productos[$i]->precioCompra.'</td>
+                                        <td class="text-center">'.$productos[$i]->precioVenta.'</td>
+                                        <td class="text-center">'.$productos[$i]->categoria.'</td>
+                                        <td class="text-center">'.$productos[$i]->stock.'</td>
+                                        <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                     </tr>
                                 ';
                                 $i++;

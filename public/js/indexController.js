@@ -16,7 +16,17 @@ var app = angular.module("tiendita", [])
     $scope.articulos = [];
     
     $scope.carrito = "false";
-    
+    $scope.pass = false;
+    $scope.tipo = "Retiro";
+    $scope.gasto = function () {
+        if ($scope.tipo == "Retiro") {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }; 
+
     $scope.less = function (idProduct) {
         console.log("menos");
         console.log(idProduct);
@@ -137,8 +147,9 @@ var app = angular.module("tiendita", [])
     };
     $scope.registrarVenta = function () {
         console.log("Cargando venta");
-        console.log($scope.articulos);
-        $http.post('/sale',{articulos: $scope.articulos});
+        //console.log($scope.articulos);
+        //$http.post('/sale', { articulos: $scope.articulos });
+        console.log("Venta registrada");
     };
 
     $scope.pago = "";

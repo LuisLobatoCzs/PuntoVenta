@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
@@ -39,8 +40,8 @@ class HomeController extends Controller
 
     public function employees(){
         $empleados = DB::table('users')
-                        ->where('rol','LIKE','0')
-                        ->orderBy('name')
+                        ->where('rol','LIKE','1')
+                        ->orderBy('user')
                         ->get();
         $totalEmpleados = $empleados->count();
         return view('employees')->with(compact('empleados','totalEmpleados'));
@@ -48,19 +49,117 @@ class HomeController extends Controller
 
     public function products(){
         $productos = DB::table('productos')
+                        ->where('status',1)
                         ->orderBy('nombre')
                         ->get();
         $totalProductos = $productos->count();
         return view('products')->with(compact('productos','totalProductos'));
     } 
 
-    public function modifyE(){
-        return view('modifyE');
-    } 
+    public function modifyE(Request $request){
+        $password = Hash::make($request->password);
+        $empleado = DB::table('users')
+                        ->where('id','like',$request->id)
+                        ->get();
+        return view('modifyE')->with(compact('empleado'));
+    }
+
+    public function addEmployee(Request $request){
+        //////////////////
+        /////////////////
+        ////////////////
+        //INSERT
+        $empleados = DB::table('users')
+                        ->where('rol','LIKE','1')
+                        ->orderBy('user')
+                        ->get();
+        $totalEmpleados = $empleados->count();
+        return view('employees')->with(compact('empleados','totalEmpleados'));
+    }
     
-    public function modifyP(){
-        return view('modifyP');
-    } 
+    public function modifyP(Request $request){
+        $producto = DB::table('productos')
+                        ->where('id_producto','like',$request->id)
+                        ->get();
+        return view('modifyP')->with(compact('producto'));
+    }
+
+    public function updateProduct(Request $request){
+        DB::table('productos')
+            ->where('id_producto', $request->id)
+            ->update([
+                'codigoBarras' => $request->codigoBarras,
+                'nombre' => $request->nombre,
+                'precioCompra' => $request->precioCompra,
+                'precioVenta' => $request->precioVenta,
+                'categoria' => $request->categoria,
+                'stock'=> $request->stock
+            ]);
+        $productos = DB::table('productos')
+                        ->orderBy('nombre')
+                        ->get();
+        $totalProductos = $productos->count();
+        return view('products')->with(compact('productos','totalProductos'));
+    }
+
+    public function addProduct(Request $request){
+        $producto = DB::table('productos')
+                        ->where('codigoBarras',$request->codigoBarras)
+                        ->get();
+        if($producto == "[]"){
+            DB::table('productos')->insert([
+                'codigoBarras' => $request->codigoBarras,
+                'nombre' => $request->nombre,
+                'precioCompra' => $request->precioCompra,
+                'precioVenta' => $request->precioVenta,
+                'categoria' => $request->categoria,
+                'stock'=> $request->stock
+            ]);
+        }
+        else{
+            DB::table('productos')
+                    ->where('codigoBarras', $request->codigoBarras,)
+                    ->update([
+                        'nombre' => $request->nombre,
+                        'precioCompra' => $request->precioCompra,
+                        'precioVenta' => $request->precioVenta,
+                        'categoria' => $request->categoria,
+                        'stock'=> $request->stock
+                    ]);
+        }
+        $productos = DB::table('productos')
+                        ->where('status',1)
+                        ->orderBy('nombre')
+                        ->get();
+        $totalProductos = $productos->count();
+        return view('products')->with(compact('productos','totalProductos'));
+    }
+    public function deleteEmployee(Request $request){
+        ////////////////////
+        ////////////////////////
+        ////////////////////////////
+        $empleados = DB::table('users')
+                ->where('rol','LIKE','1')
+                ->orderBy('user')
+                ->get();
+        $totalEmpleados = $empleados->count();
+        return view('employees')->with(compact('empleados','totalEmpleados'));
+    }
+
+    public function deleteProduct(Request $request){
+        DB::table('productos')
+            ->where('id_producto', $request->id)
+            ->update([
+                'status' => '0',
+                'stock'=> '0'
+            ]);
+        $productos = DB::table('productos')
+                        ->where('status',1)
+                        ->orderBy('nombre')
+                        ->get();
+        $totalProductos = $productos->count();
+        return view('products')->with(compact('productos','totalProductos'));
+    }
 
     public function addEmployees(){
         return view('addEmployees');
@@ -77,6 +176,10 @@ class HomeController extends Controller
     public function addExpenses(){
         return view('addExpenses');
     } 
+
+    public function addExpense(){
+        return view('reports');
+    }
 
     public function createJSON(){
         $consulta = DB::table('productos')
@@ -103,8 +206,29 @@ class HomeController extends Controller
         return $productos;
     }
 
-    public function sellreg( Request $request){
+    public function sellreg(Request $request){
         echo $productosVendidos = $request->articulos;
         return 'HOla';
+    }
+
+    public function updateUser(Request $request){
+        /*
+        if($request->password == ""){
+            DB::table('users')
+                ->update()
+                -where('id','like',$request->id);
+        }
+        else{
+            DB::table('users')
+                ->update()
+                -where('id','like',$request->id);
+        }
+        */
+        $empleados = DB::table('users')
+                        ->where('rol','LIKE','1')
+                        ->orderBy('user')
+                        ->get();
+        $totalEmpleados = $empleados->count();
+        return view('employees')->with(compact('empleados','totalEmpleados'));
     }
 }
