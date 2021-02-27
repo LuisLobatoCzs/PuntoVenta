@@ -48,8 +48,8 @@
                                     <tr>
                                         <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                         <td>'.$productos[$i]->nombre.'</td>
-                                        <td class="text-center">'.$productos[$i]->precioCompra.'</td>
-                                        <td class="text-center">'.$productos[$i]->precioVenta.'</td>
+                                        <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                        <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                         <td class="text-center">'.$productos[$i]->categoria.'</td>
                                         <td class="text-center">'.$productos[$i]->stock.'</td>
                                         <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
