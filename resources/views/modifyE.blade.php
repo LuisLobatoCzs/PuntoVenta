@@ -100,7 +100,7 @@
                         <div class="form-group">
                             <div class="row justify-content-center">
                                 <div class="col-11 text-right">
-                                    <a href="/deleteEmployee?id=<?php echo $productos[$i]->id_producto; ?>">
+                                    <a href="/deleteEmployee?id=<?php echo $empleado[0]->id; ?>">
                                         <button type="button" class="btn btn-danger btn-block">Eliminar empleado</button>                                
                                     </a>
                                 </div>

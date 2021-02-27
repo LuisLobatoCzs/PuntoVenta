@@ -26,21 +26,32 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        if(Auth::user()->rol == 0){
-            return view('admin');
+        if(Auth::user()->status == 0){
+            return view('locked');
         }
         else{
-            return view('home');
+            if(Auth::user()->rol == 0){
+                return view('admin');
+            }
+            else{
+                return view('home');
+            }
         }
     }
     
     public function sell(){
-        return view('sell');
+        if(Auth::user()->status == 0){
+            return view('locked');
+        }
+        else{
+            return view('sell');
+        }
     }
 
     public function employees(){
         $empleados = DB::table('users')
                         ->where('rol','LIKE','1')
+                        ->where('status',1)
                         ->orderBy('user')
                         ->get();
         $totalEmpleados = $empleados->count();
@@ -57,20 +68,24 @@ class HomeController extends Controller
     } 
 
     public function modifyE(Request $request){
-        $password = Hash::make($request->password);
         $empleado = DB::table('users')
-                        ->where('id','like',$request->id)
+                        ->where('id',$request->id)
                         ->get();
         return view('modifyE')->with(compact('empleado'));
     }
 
     public function addEmployee(Request $request){
-        //////////////////
-        /////////////////
-        ////////////////
-        //INSERT
+        $password = Hash::make($request->password);
+        DB::table('users')->insert([
+            'user' => $request->user,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => $password
+        ]);
         $empleados = DB::table('users')
                         ->where('rol','LIKE','1')
+                        ->where('status',1)
                         ->orderBy('user')
                         ->get();
         $totalEmpleados = $empleados->count();
@@ -135,13 +150,17 @@ class HomeController extends Controller
         return view('products')->with(compact('productos','totalProductos'));
     }
     public function deleteEmployee(Request $request){
-        ////////////////////
-        ////////////////////////
-        ////////////////////////////
+        DB::table('users')
+                    ->where('id', $request->id)
+                    ->update([
+                        'status' => 0,
+                    ]);
+        
         $empleados = DB::table('users')
-                ->where('rol','LIKE','1')
-                ->orderBy('user')
-                ->get();
+                        ->where('rol', 1)
+                        ->where('status', 1)
+                        ->orderBy('user')
+                        ->get();
         $totalEmpleados = $empleados->count();
         return view('employees')->with(compact('empleados','totalEmpleados'));
     }
@@ -170,7 +189,12 @@ class HomeController extends Controller
     } 
 
     public function reports(){
-        return view('reports');
+        if(Auth::user()->status == 0){
+            return view('locked');
+        }
+        else{
+            return view('reports');
+        }
     } 
 
     public function addExpenses(){
@@ -212,20 +236,30 @@ class HomeController extends Controller
     }
 
     public function updateUser(Request $request){
-        /*
         if($request->password == ""){
             DB::table('users')
-                ->update()
-                -where('id','like',$request->id);
+                    ->where('id', $request->id)
+                    ->update([
+                        'user' => $request->user,
+                        'email'=> $request->email,
+                        'phone' => $request->phone
+                    ]);
         }
         else{
+            $password = Hash::make($request->password);
             DB::table('users')
-                ->update()
-                -where('id','like',$request->id);
+                    ->where('id', $request->id)
+                    ->update([
+                        'user' => $request->user,
+                        'email'=> $request->email,
+                        'phone' => $request->phone,
+                        'password' => $password
+                    ]);
         }
-        */
+        
         $empleados = DB::table('users')
-                        ->where('rol','LIKE','1')
+                        ->where('rol', 1)
+                        ->where('status', 1)
                         ->orderBy('user')
                         ->get();
         $totalEmpleados = $empleados->count();

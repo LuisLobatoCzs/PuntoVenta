@@ -66,4 +66,8 @@ Route::post('/updateProduct', 'HomeController@updateProduct')->name('updateProdu
 
 Route::get('/deleteProduct', 'HomeController@deleteProduct')->name('deleteProduct');
 
+Route::get('/locked', function () {
+    return view('locked');
+});
+
 
