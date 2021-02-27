@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-02-2021 a las 01:33:26
+-- Tiempo de generación: 27-02-2021 a las 17:22:35
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.4.14
 
@@ -61,12 +61,30 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
-  `codigoBarras` int(11) NOT NULL,
+  `codigoBarras` varchar(25) NOT NULL,
   `nombre` varchar(150) NOT NULL,
   `precioCompra` float NOT NULL,
   `precioVenta` float NOT NULL,
   `stock` float NOT NULL,
-  `unidadMedida` int(11) DEFAULT NULL
+  `unidadMedida` int(11) DEFAULT NULL,
+  `categoria` varchar(50) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `transacciones`
+--
+
+CREATE TABLE `transacciones` (
+  `id_venta` int(11) NOT NULL,
+  `id_usuario` bigint(20) NOT NULL,
+  `venta` float DEFAULT NULL,
+  `gasto` float DEFAULT NULL,
+  `concepto` text DEFAULT NULL,
+  `retiro` float DEFAULT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -85,17 +103,16 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `user`, `rol`, `name`, `email`, `phone`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 0, NULL, NULL, NULL, '$2y$10$MX9uKKNOyYKMjGMoP1H1wumLiSgj40xRKtrlLP9oeWVE/1Yl6EYQO', 'muCxhIYP3H6j2DRthMBDDLai3MLPzw9uxbTCgik5QVEzHasjNz7TsTPkmyqf', '2021-02-07 08:27:58', '2021-02-07 08:27:58'),
-(3, 'asd', 1, NULL, NULL, NULL, '$2y$10$3AJ0UomJjSgu1JMarvzUReSa1B30KdLqyfp7dwUCjUNrmazT77X9.', 'MhlfJ2FZ0Jw2t4piexDunb7vHGHf1W92PJfJdbzmscid4al9NP9X3eYAkMNr', '2021-02-07 10:54:14', '2021-02-07 10:54:14'),
-(4, 'qwe', 1, NULL, NULL, NULL, '$2y$10$pnlrSkhxBEQS398eKEf0LO3FPl1IF4vOWzNQdUXIaDOICUbsuI4G.', 'XRaRrb3KrPIbrNoNTizyQ4o9uhLO8pz9zulfuf8MO0yfI2MDj31iDhuvN6lX', '2021-02-07 11:08:16', '2021-02-07 11:08:16');
+INSERT INTO `users` (`id`, `user`, `rol`, `name`, `email`, `phone`, `password`, `remember_token`, `created_at`, `updated_at`, `status`) VALUES
+(1, 'Admin', 0, NULL, NULL, NULL, '$2y$10$MX9uKKNOyYKMjGMoP1H1wumLiSgj40xRKtrlLP9oeWVE/1Yl6EYQO', 'N9bPO9yq0vSYINeup8q1DPrxH926fhdTqjpuL6zNWoOOpEBFrD38cp2kpGYq', '2021-02-07 08:27:58', '2021-02-07 08:27:58', 1);
 
 --
 -- Índices para tablas volcadas
@@ -112,6 +129,18 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id_producto`);
+
+--
+-- Indices de la tabla `transacciones`
+--
+ALTER TABLE `transacciones`
+  ADD PRIMARY KEY (`id_venta`);
 
 --
 -- Indices de la tabla `users`
@@ -132,10 +161,22 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `transacciones`
+--
+ALTER TABLE `transacciones`
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
