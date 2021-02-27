@@ -38,7 +38,12 @@ class HomeController extends Controller
     }
 
     public function employees(){
-        return view('employees');
+        $empleados = DB::table('users')
+                        ->where('rol','LIKE','0')
+                        ->orderBy('name')
+                        ->get();
+        $totalEmpleados = $empleados->count();
+        return view('employees')->with(compact('empleados','totalEmpleados'));
     } 
 
     public function products(){
@@ -96,5 +101,10 @@ class HomeController extends Controller
         }
         $productos = $productos.'] }';
         return $productos;
+    }
+
+    public function sellreg( Request $request){
+        echo $productosVendidos = $request->articulos;
+        return 'HOla';
     }
 }

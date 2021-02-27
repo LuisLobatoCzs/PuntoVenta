@@ -87,7 +87,7 @@
                         <form class="col-12 cuadro cuadroP">
                             <div class="row justify-content-center">
                                 <label for="" class="col-12"><h3>Total</h3></label>
-                                <label for="" class="col-12"><h1>$@{{ total }}</h1></label>
+                                <label for="" class="col-12"><h1 ng-cloak>$@{{ total }}</h1></label>
                             </div>
                         </form>
                     </div>
@@ -127,14 +127,14 @@
                                     <tbody>
                                            
                                         <tr ng-repeat="articulo in articulos" ng-if="carrito">
-                                            <td>
+                                            <td ng-cloak>
                                                 <button class="btn btn-info" ng-click="less(articulo.codigoBarras)">-</button>
                                                 <button class="btn btn-danger" ng-click="plus(articulo.codigoBarras)">+</button>
                                             </td>
-                                            <td>@{{ articulo.producto }}</td>
-                                            <td>$@{{ articulo.precioUnitario }}</td>
-                                            <td>@{{ articulo.cantidad }}</td>
-                                            <td>$@{{ articulo.importe }}</td>
+                                            <td ng-cloak>@{{ articulo.producto }}</td>
+                                            <td ng-cloak>$@{{ articulo.precioUnitario }}</td>
+                                            <td ng-cloak>@{{ articulo.cantidad }}</td>
+                                            <td ng-cloak>$@{{ articulo.importe }}</td>
                                         </tr>    
                                            
                                     </tbody>

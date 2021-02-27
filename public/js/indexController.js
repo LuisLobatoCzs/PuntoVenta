@@ -2,14 +2,10 @@ var app = angular.module("tiendita", [])
 .controller('controllerTiendita', function($scope,$http){
     // Crea JSON con todos los productos de la base de datos
     $scope.productos = [];
-    $scope.consultar = function () {
+    $scope.export = function () {
         $http.get('/productsJSON')
             .then(function (response) { $scope.productos = response.data.productos });
         console.log("Productos exportados");
-    }
-    $scope.export = function () {
-        console.log("Exportando................");
-        $scope.consultar();
     }
     /////////////////////////////////////////////////////////
     
@@ -139,6 +135,11 @@ var app = angular.module("tiendita", [])
         }
         $scope.codigoBarras = "";
     };
+    $scope.registrarVenta = function () {
+        console.log("Cargando venta");
+        console.log($scope.articulos);
+        $http.post('/sale',{articulos: $scope.articulos});
+    };
 
     $scope.pago = "";
     $scope.cambio = 0; 
@@ -149,13 +150,10 @@ var app = angular.module("tiendita", [])
                     $scope.cambio = $scope.pago - $scope.total;
                     //alert("Cambio: $" + $scope.cambio);
                     Swal.fire({
-                        html: '<h1>Cambio: $' + $scope.cambio + '</h1>',
+                        html: '<h2>Total: $' + $scope.total + '</h2>---------------------------------------------------------<br><h1>Cambio: $' + $scope.cambio + '</h1>',
                     });
                 }
-                $scope.total = 0;
-                $scope.articulos = [];
-                $scope.pago = "";
-
+                $scope.registrarVenta();
                 toastr.success("Venta realizada", "Listo!");
                 toastr.options = {
                     "closeButton": true,
@@ -174,6 +172,9 @@ var app = angular.module("tiendita", [])
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
+                $scope.total = 0;
+                $scope.articulos = [];
+                $scope.pago = "";
             }
             else {
                 console.log("El pago es menor al total");

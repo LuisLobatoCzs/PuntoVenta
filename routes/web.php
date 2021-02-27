@@ -12,7 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    $usuario = Auth::user();
+    if($usuario != null){
+        if(Auth::user()->rol == 0){
+            return view('admin');
+        }
+        else{
+            return view('home');
+        }
+    }
+    else{
+        return view('auth/login');
+    }
 });
 
 Auth::routes();
@@ -20,6 +31,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/sell', 'HomeController@sell')->name('sell');
+
+Route::post('/sale', 'HomeController@sellreg')->name('sale');
 
 Route::get('/employees','HomeController@employees')->name('employees');
 
