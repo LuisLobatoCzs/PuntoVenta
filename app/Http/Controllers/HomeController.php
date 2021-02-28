@@ -315,11 +315,11 @@ class HomeController extends Controller
         else{
             date_default_timezone_set("America/Monterrey");
             $hoy = date("Y-m-d");
+            $fecha = $request->fecha;
+            if($fecha == $hoy){
+                $fecha = date("Y-m-d H:i:s");
+            }
             if($request->tipo == "Gasto"){    
-                $fecha = $request->fecha;
-                if($fecha == $hoy){
-                    $fecha = date("Y-m-d H:i:s");
-                }
                 DB::table('transacciones')->insert([
                     'id_usuario' => $request->id,
                     'gasto' => 1,
@@ -329,10 +329,6 @@ class HomeController extends Controller
                 ]);
             }
             else if($request->tipo == "Retiro"){
-                $fecha = $request->fecha;
-                if($fecha == $hoy){
-                    $fecha = date("Y-m-d H:i:s");
-                }
                 DB::table('transacciones')->insert([
                     'id_usuario' => $request->id,
                     'retiro' => 1,
