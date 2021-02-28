@@ -69,7 +69,7 @@
                             <div class="row centrarY">
                                 <label for="monto" class="col-lg-4 col-xl-4 text-right control-label">Monto:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="Monto" placeholder="Ingresa el monto" type="number" class="form-control" name="monto" required>
+                                    <input id="monto" placeholder="Ingresa el monto" type="number" step="0.01" min=".01" class="form-control" name="monto" required>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                             <div class="row centrarY">
                                 <label for="tipo" class="col-lg-4 col-xl-4 text-right control-label">Tipo de gasto:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <select ng-model="tipo" class="form-control" required>
+                                    <select ng-model="tipo" class="form-control" id="tipo" name="tipo" required>
                                         <option value="Retiro">Retiro</option>
                                         <option value="Gasto">Gasto</option>
                                     </select>

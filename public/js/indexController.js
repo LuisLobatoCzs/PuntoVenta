@@ -10,6 +10,11 @@ var app = angular.module("tiendita", [])
     /////////////////////////////////////////////////////////
     
     $scope.total = 0;
+    $scope.formatoDecimal = function(valor) {
+        return isNaN(valor) ? valor : parseFloat(valor).toFixed(2);
+    }
+    
+
     $scope.codigoBarras = "";
     $scope.num = 0;
     $scope.nuevoArticulo = {};
@@ -147,9 +152,16 @@ var app = angular.module("tiendita", [])
     };
     $scope.registrarVenta = function () {
         console.log("Cargando venta");
-        //console.log($scope.articulos);
         //$http.post('/sale', { articulos: $scope.articulos });
-        console.log("Venta registrada");
+        $scope.total = $scope.formatoDecimal($scope.total);
+        $http({
+            method: 'POST',
+            url: '/sale',
+            params: {
+                data: JSON.stringify($scope.articulos),
+                total: $scope.total
+            }
+          });
     };
 
     $scope.pago = "";
@@ -159,9 +171,10 @@ var app = angular.module("tiendita", [])
             if ($scope.pago >= $scope.total) {
                 if ($scope.pago > $scope.total) {
                     $scope.cambio = $scope.pago - $scope.total;
+                    $scope.cambio = $scope.formatoDecimal($scope.cambio);
                     //alert("Cambio: $" + $scope.cambio);
                     Swal.fire({
-                        html: '<h2>Total: $' + $scope.total + '</h2>---------------------------------------------------------<br><h1>Cambio: $' + $scope.cambio + '</h1>',
+                        html: '<h2>Total: $' + $scope.formatoDecimal($scope.total) + '</h2>---------------------------------------------------------<br><h1>Cambio: $' + $scope.cambio + '</h1>',
                     });
                 }
                 $scope.registrarVenta();

@@ -87,21 +87,22 @@
                         <form class="col-12 cuadro cuadroP">
                             <div class="row justify-content-center">
                                 <label for="" class="col-12"><h3>Total</h3></label>
-                                <label for="" class="col-12"><h1 ng-cloak>$@{{ total }}</h1></label>
+                                <label for="" class="col-12"><h1 ng-cloak>$@{{ formatoDecimal(total) }}</h1></label>
                             </div>
                         </form>
                     </div>
                     <div class="row">  
-                        <form class="col-12 cuadro cuadroP">
+                        <form method="POST" class="col-12 cuadro cuadroP">
+                            {{ csrf_field() }}
                             <div class="row justify-content-center">
                                 <label class="col-10" for=""><h6>Ingrese pago:</h6></label>
                                 <div class="col-10">
                                     <div class="row centrarY ">
                                         <div class="col-2 box">$</div>
-                                        <input ng-model="pago" type="text" class="col-10 form-control" placeholder="0.00 MXN">
+                                        <input ng-model="pago" id="pago" type="text" class="col-10 form-control" placeholder="0.00 MXN">
                                     </div>
                                 </div>
-                                <button class="btn btn-danger col-10" ng-click="setPago()">Cobrar</button>
+                                <button type="submit" class="btn btn-danger col-10" ng-click="setPago()">Cobrar</button>
                             </div>
                         </form>  
                     </div>                 
@@ -112,7 +113,6 @@
                             <br>
                             <h5>Lista de compras de compras</h5>
                             <hr>
-                            
                             <div class="table-reesponse">
                                 <table class="table table-hover">
                                     <thead>

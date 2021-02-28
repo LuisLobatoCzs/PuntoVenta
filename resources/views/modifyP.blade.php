@@ -72,7 +72,7 @@
                             <div class="row centrarY">
                                 <label for="precioCompra" class="col-lg-4 col-xl-4 text-right control-label">Precio compra:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="precioCompra" placeholder="Modifica precio compra" type="text" class="form-control" name="precioCompra" value="<?php echo $producto[0]->precioCompra;?>" required>
+                                    <input id="precioCompra" placeholder="Modifica precio compra" type="number" step="0.01" min="0" class="form-control" name="precioCompra" value="<?php echo $producto[0]->precioCompra;?>" required>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="row centrarY">
                                 <label for="precioVenta" class="col-lg-4 col-xl-4 text-right control-label">Precio venta:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="precioVenta" placeholder="Modifica precio venta" type="text" class="form-control" name="precioVenta" value="<?php echo $producto[0]->precioVenta;?>" required>
+                                    <input id="precioVenta" placeholder="Modifica precio venta" type="number" step="0.01" min="0" class="form-control" name="precioVenta" value="<?php echo $producto[0]->precioVenta;?>" required>
                                 </div>
                             </div>
                         </div>   
@@ -107,7 +107,7 @@
                             <div class="row centrarY">
                                 <label for="stock" class="col-lg-4 col-xl-4 text-right control-label">Stock:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="Stock" placeholder="Unidades disponibles" type="text" class="form-control" name="stock" value="<?php echo $producto[0]->stock;?>" required>
+                                    <input id="Stock" placeholder="Unidades disponibles" type="number" class="form-control" name="stock" value="<?php echo $producto[0]->stock;?>" required>
                                 </div>
                             </div>
                         </div>               
