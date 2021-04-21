@@ -2,4 +2,4 @@
 
 @section('title', 'Error')
 
-@section('message', 'Whoops, looks like something went wrong.')
+@section('message', 'Lo sentimos, no se ha cargado la base de datos, por favor recarga la página o presiona F5.')

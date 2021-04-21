@@ -1,5 +1,7 @@
 <?php
 
+use App\Exports\Export;
+use Maatwebsite\Excel\Facades\Excel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +28,12 @@ Route::get('/', function () {
     }
 });
 
+Route::get('/backup', function() {
+    date_default_timezone_set("America/Monterrey");
+    $fecha = date("Y-m-d");
+    echo "Se a descargado su reporte mensual programado";
+    return ((new Export)->download("ReporteDeVentas_".$fecha.".xlsx"));
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -66,10 +74,20 @@ Route::post('/updateProduct', 'HomeController@updateProduct')->name('updateProdu
 
 Route::get('/deleteProduct', 'HomeController@deleteProduct')->name('deleteProduct');
 
-Route::get('/delete', 'HomeController@delete')->name('delete');
-
 Route::get('/locked', function () {
     return view('locked');
 });
 
+Route::get('/delete', 'HomeController@delete')->name('delete');
+//Route::get('/backup', 'HomeController@exportarExcel')->name('backup');
+/*
+Route::get('/delete', function(){
+    $h = (new Export)->download('ReporteDeVentas.xlsx');
+    return view('/admin')->with(compact('h'));
+});
+*/
+Route::get('/cashCut', 'HomeController@cashCut')->name('cashCut');
 
+Route::get('/preview', function () {
+    return view('exports.reports');
+});

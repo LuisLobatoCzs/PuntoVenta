@@ -172,10 +172,14 @@ var app = angular.module("tiendita", [])
                 if ($scope.pago > $scope.total) {
                     $scope.cambio = $scope.pago - $scope.total;
                     $scope.cambio = $scope.formatoDecimal($scope.cambio);
-                    //alert("Cambio: $" + $scope.cambio);
                     Swal.fire({
                         html: '<h2>Total: $' + $scope.formatoDecimal($scope.total) + '</h2>---------------------------------------------------------<br><h1>Cambio: $' + $scope.cambio + '</h1>',
                     });
+                }
+                else if($scope.pago == $scope.total){
+                    Swal.fire({
+                        html: '<h1>Venta realizada</h1>',
+                    });    
                 }
                 $scope.registrarVenta();
                 toastr.success("Venta realizada", "Listo!");
@@ -227,4 +231,35 @@ var app = angular.module("tiendita", [])
             $scope.pago = "";
         }
     };
+
+    $scope.importeGasto;
+    $scope.saldo = 0;
+    $scope.buttonE = true;
+    $scope.setSaldo = function (s) {
+        $scope.saldo = s;
+    }
+    $scope.expensesButton = function () {
+        if($scope.saldo >= $scope.importeGasto){
+            $scope.buttonE = false;
+        }
+        else{
+            $scope.buttonE = true;
+        }
+    }
+    $scope.deleteAll = function () {
+        Swal.fire({
+            html: '<h2>¿Quieres eliminar todos los registros? </h2><br> <a href="/delete"><button class="btn btn-secondary col-12">Borrar todo</button></a><br><a href="/reports"><button class="btn btn-success col-12">Cancelar</button></a>',
+            showCancelButton: false,
+            showConfirmButton: false
+        });      
+    };
+
+    $scope.corte = function () {
+        Swal.fire({
+            html: '<h2>Registrar corte de caja</h2><br> <a href="/cashCut"><button class="btn btn-secondary col-12">Hacer corte</button></a><br><a href="/reports"><button class="btn btn-success col-12">Cancelar</button></a>',
+            showCancelButton: false,
+            showConfirmButton: false
+        });
+    }
+
 });

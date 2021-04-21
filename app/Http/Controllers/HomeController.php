@@ -1,11 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use Maatwebsite\Excel\Excel;
+use App\Exports\Export;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
+use App\Services\GitHub;
 
 class HomeController extends Controller
 {
@@ -252,11 +255,13 @@ class HomeController extends Controller
             $i=0;
             $saldo=0;
             while($i<$totalReportes){
-                if($reportes[$i]->venta == 1){
-                    $saldo = $saldo+$reportes[$i]->importe;
-                }
-                else{
-                    $saldo = $saldo-$reportes[$i]->importe;
+                if($reportes[$i]->corteCaja != 1){
+                    if($reportes[$i]->venta == 1){
+                        $saldo = $saldo+$reportes[$i]->importe;
+                    }
+                    else{
+                        $saldo = $saldo-$reportes[$i]->importe;
+                    }
                 }
                 $i++;
             }
@@ -276,6 +281,7 @@ class HomeController extends Controller
                 $hora_max = $dia.' 23:59:59' ;
                 $reportes = DB::table('transacciones')
                             ->where('id_usuario',Auth::user()->id)
+
                             ->whereBetween('fecha', [$hora_min, $hora_max])
                             ->orderBy('fecha', 'desc')
                             ->get();
@@ -300,11 +306,29 @@ class HomeController extends Controller
     } 
 
     public function addExpenses(){
+        $reportes = DB::table('transacciones')
+                            ->orderBy('fecha','desc')
+                            ->get();
+        $totalReportes = $reportes->count();
+        $i=0;
+        $saldo=0;
+        while($i<$totalReportes){
+            if($reportes[$i]->venta == 1){
+                $saldo = $saldo+$reportes[$i]->importe;
+            }
+            else{
+                $saldo = $saldo-$reportes[$i]->importe;
+            }
+            $i++;
+        }
+        if($saldo < 0){
+            $saldo = 0;
+        }
         if(Auth::user()->rol == 1){
             return view('home');
         }
         else{
-            return view('addExpenses');
+            return view('addExpenses')->with(compact('saldo'));
         }
     } 
 
@@ -339,7 +363,7 @@ class HomeController extends Controller
             }
             
             $reportes = DB::table('transacciones')
-                            ->orderBy('fecha')
+                            ->orderBy('fecha','desc')
                             ->get();
             $totalReportes = $reportes->count();
             $i=0;
@@ -363,6 +387,7 @@ class HomeController extends Controller
     public function createJSON(){
         $consulta = DB::table('productos')
                         ->select('codigoBarras', 'nombre', 'precioVenta', 'stock', 'unidadMedida')
+                        ->where('status',1)
                         ->get();
         $total = $consulta->count();
         
@@ -456,11 +481,70 @@ class HomeController extends Controller
         }
     }
 
+    public function exportarExcel(){
+        date_default_timezone_set("America/Monterrey");
+        $fecha = date("Y-m-d");
+        return ((new Export)->download("ReporteDeVentas_".$fecha.".xlsx"));
+    }
     public function delete(){
         DB::table('transacciones')->delete();
         $reportes = [];
         $totalReportes = 0;
         $saldo = 0;
         return view('reports')->with(compact('reportes','totalReportes', 'saldo'));
+        
+        //$this->exportarExcel();
+        //$e=HomeController::exportarExcel();
+        
+/*
+        return response()->stream(function() {
+            echo view('admin');
+            /*header("Content-Description: Descargar imagen");
+            header("Content-Disposition: attachment; filename=r.xlsx");
+            header("Content-Type: application/force-download");
+            header("Content-Length: " . filesize('img/r.xlsx'));
+            header("Content-Transfer-Encoding: binary");
+            readfile('img/r.xlsx');
+            
+          }
+        );
+*/
+    }
+
+    public function cashCut(){
+        date_default_timezone_set("America/Monterrey");
+                $dia = date("Y-m-d");
+                $hora_min = $dia.' 00:00:00';
+                $hora_max = $dia.' 23:59:59' ;
+                
+        $importes = DB::table('transacciones')
+                        ->select('importe')
+                        ->where('status',1)
+                        ->where('venta',1)
+                        ->where('id_usuario',Auth::user()->id)
+                        ->whereBetween('fecha', [$hora_min, $hora_max])
+                        ->get();
+        $total = 0;
+        foreach($importes as $importe){
+            $total = $total + $importe->importe;
+        }
+        if($total > 0){
+            DB::table('transacciones')
+            ->insert([
+                'id_usuario' => Auth::user()->id,
+                'importe' => $total,
+                'concepto' => "Corte de Caja realizado por ".Auth::user()->user,
+                'corteCaja' => 1,
+                'fecha' => date("Y-m-d H:i:s"),
+            ]);
+            DB::table('transacciones')
+                    ->where('id_usuario', Auth::user()->id)
+                    ->where('venta',1)
+                    ->update([
+                         'status' => 0,
+                    ]);
+    
+        }
+        return $this->reports();
     }
 }

@@ -10,9 +10,26 @@
     <br><br>
     <div class="row justify-content-center centraY">
         <div class="col-12 col-md-8 text-center">
-            <h1>Ventas del día $<?php echo $saldo; ?></h1>
-        </div>    
-    </div>    
+            <h1>Ventas actuales $<?php echo $saldo; ?></h1>
+        </div>
+        <div class="col-12 col-md-3 text-center">
+            <button ng-click="corte()" class="btn btn-warning col-10">Corte de caja</button>
+        </div>     
+    </div>
+    <?php 
+        $sumCortes = 0;
+        foreach($reportes as $reporte){
+            if($reporte->corteCaja == 1){
+                $sumCortes = $sumCortes + $reporte->importe;
+            }
+        }
+    ?>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-11 text-right">
+            Suma de los cortes de hoy: $<?php echo $sumCortes;?> 
+        </div>
+    </div>
+
     <div class="row justify-content-center">
         <div class="col-12 col-md-11  align=center">
             <div class="table-responsive">
@@ -28,24 +45,34 @@
                         <?php
                             $i=0;
                             while($i<$totalReportes){
-                                echo '    
-                                    <tr>
-                                        <td>'.$reportes[$i]->concepto.'</td>
-                                        <td>'.$reportes[$i]->fecha.'</td>
-                                ';
-                                if($reportes[$i]->venta == 1){
-                                    echo '
-                                        <td class=" text-right">$'.$reportes[$i]->importe.'</td>
-                                    </tr>
+                                if($reportes[$i]->corteCaja == 1){
+                                    echo '    
+                                        <tr>
+                                            <td class="btn-info">'.$reportes[$i]->concepto.'</td>
+                                            <td class="btn-info">'.$reportes[$i]->fecha.'</td>
+                                            <td class="btn-secondary text-right"> $'.$reportes[$i]->importe.'</td>
+                                        </tr>
                                     ';
                                 }
                                 else{
-                                    echo '
-                                        <td class="btn-secondary text-right">- $'.$reportes[$i]->importe.'</td>
-                                    </tr>
+                                    echo '    
+                                        <tr>
+                                            <td>'.$reportes[$i]->concepto.'</td>
+                                            <td>'.$reportes[$i]->fecha.'</td>
                                     ';
+                                    if($reportes[$i]->venta == 1){
+                                        echo '
+                                            <td class=" text-right">$'.$reportes[$i]->importe.'</td>
+                                        </tr>
+                                        ';
+                                    }
+                                    else{
+                                        echo '
+                                            <td class="btn-secondary text-right">- $'.$reportes[$i]->importe.'</td>
+                                        </tr>
+                                        ';
+                                    }
                                 }
-                                
                                 $i++;
                             }
                         ?>

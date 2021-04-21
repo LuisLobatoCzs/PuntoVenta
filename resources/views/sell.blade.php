@@ -132,9 +132,9 @@
                                                 <button class="btn btn-danger" ng-click="plus(articulo.codigoBarras)">+</button>
                                             </td>
                                             <td ng-cloak>@{{ articulo.producto }}</td>
-                                            <td ng-cloak>$@{{ articulo.precioUnitario }}</td>
+                                            <td ng-cloak>$@{{ formatoDecimal(articulo.precioUnitario) }}</td>
                                             <td ng-cloak>@{{ articulo.cantidad }}</td>
-                                            <td ng-cloak>$@{{ articulo.importe }}</td>
+                                            <td ng-cloak>$@{{ formatoDecimal(articulo.importe) }}</td>
                                         </tr>    
                                            
                                     </tbody>

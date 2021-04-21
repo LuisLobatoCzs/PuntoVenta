@@ -21,6 +21,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+{{setSaldo(<?php echo $saldo;?>)}}
+<input ng-model="saldo" type="number" class="col-12 form-control" ng-hide="true">
 <div class="col-12">
     <div class="row justify-content-center">
         <div class="col-xl-5 cuadro">
@@ -69,7 +72,7 @@
                             <div class="row centrarY">
                                 <label for="monto" class="col-lg-4 col-xl-4 text-right control-label">Monto:</label>
                                 <div class="col-lg-7 col-xl-7">
-                                    <input id="monto" placeholder="Ingresa el monto" type="number" step="0.01" min=".01" class="form-control" name="monto" required>
+                                    <input id="monto" ng-model="importeGasto" placeholder="Ingresa el monto" type="number" step="0.01" min=".01" class="form-control" name="monto" required>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +101,7 @@
                         <div class="form-group">
                             <div class="row justify-content-center">
                                 <div class="col-11 text-right">
-                                    <button class="btn btn-primary btn-block">Agregar gasto</button>                                
+                                    <button ng-disabled="importeGasto <= saldo ? false : true" class="btn btn-primary btn-block">Agregar gasto</button>                                
                                 </div>
                             </div>
                         </div>
