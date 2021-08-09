@@ -1,4 +1,4 @@
-<style>
+﻿<style>
     .centrarXY {
         display: flex;
         align-items: center;
@@ -83,13 +83,13 @@
                                             <option>Selecciona una opción</option>
                                             <option value="Bebidas">Bebidas</option>
                                             <option value="Embutidos" >Embutidos</option>
-                                            <option value="Lácteos/Quesos">Lácteos/Quesos</option>
-                                            <option value="Frituras/Golosinas">Frituras/Golosinas</option>
-                                            <option value="Comestibles">Comestibles</option>
-                                            <option value="Higiene/Limpieza" >Higiene/Limpieza</option>
+                                            <option value="Lácteos">Lácteos</option>
+                                            <option value="Dulcería">Dulcería</option>
+                                            <option value="Semillas">Semillas</option>
+                                            <option value="Detergentes" >Detergentes</option>
                                             <option value="Mascotas">Mascotas</option>
-                                            <option value="Frutas/Verduras" >Frutas/Verduras</option>
-                                            <option selected value="Miselaneos">Miselaneos</option>
+                                            <option value="Farmacia" >Farmacia</option>
+                                            <option selected value="Abarrotes">Abarrotes</option>
                                     </select>
                                 </div>
                             </div>

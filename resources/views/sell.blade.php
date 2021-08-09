@@ -78,7 +78,7 @@
                         <form class="col-12 cuadro cuadroP">
                             <div class="row justify-content-center">
                                 <label class="form col-10" for="product"><h6>Agregar productos:</h6></label>
-                                <input class="form-control col-10" type="text" placeholder="Ingresa el código de barras" ng-model="codigoBarras">
+                                <input class="form-control col-10" type="text" placeholder="Ingresa el código de barras" ng-model="codigoBarras" autofocus="autofocus">
                                 <button class="btn btn-success col-10" ng-click="setArticulo()">Agregar</button>
                             </div>
                         </form>
@@ -132,9 +132,9 @@
                                                 <button class="btn btn-danger" ng-click="plus(articulo.codigoBarras)">+</button>
                                             </td>
                                             <td ng-cloak>@{{ articulo.producto }}</td>
-                                            <td ng-cloak>$@{{ articulo.precioUnitario }}</td>
+                                            <td ng-cloak>$@{{ formatoDecimal(articulo.precioUnitario) }}</td>
                                             <td ng-cloak>@{{ articulo.cantidad }}</td>
-                                            <td ng-cloak>$@{{ articulo.importe }}</td>
+                                            <td ng-cloak>$@{{ formatoDecimal(articulo.importe) }}</td>
                                         </tr>    
                                            
                                     </tbody>

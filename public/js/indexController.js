@@ -1,4 +1,4 @@
-var app = angular.module("tiendita", [])
+﻿var app = angular.module("tiendita", [])
 .controller('controllerTiendita', function($scope,$http){
     // Crea JSON con todos los productos de la base de datos
     $scope.productos = [];
@@ -25,6 +25,9 @@ var app = angular.module("tiendita", [])
     $scope.tipo = "Retiro";
     $scope.gasto = function () {
         if ($scope.tipo == "Retiro") {
+            return false;
+        }
+        else if ($scope.tipo == "Depósito") {
             return false;
         }
         else {
@@ -67,24 +70,6 @@ var app = angular.module("tiendita", [])
         var i = 0;
         if ($scope.codigoBarras === "") {
             console.log("No ingreso un código de barras");
-            toastr.error("Debe ingresar un código de barras para continuar", "Ha ocurrido un error!");
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": true,
-                "positionClass": "toast-top-left",
-                "preventDuplicates": true,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
         }
         else {
             $scope.finder = false;
@@ -128,24 +113,6 @@ var app = angular.module("tiendita", [])
             }
             else {
                 console.log("No se encontró el código de barras");
-                toastr.warning("Verifique que el producto se encuentre registrado en el inventario.", "Algo salió mal");
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": true,
-                    "progressBar": true,
-                    "positionClass": "toast-top-left",
-                    "preventDuplicates": true,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
             }
         }
         $scope.codigoBarras = "";
@@ -172,30 +139,17 @@ var app = angular.module("tiendita", [])
                 if ($scope.pago > $scope.total) {
                     $scope.cambio = $scope.pago - $scope.total;
                     $scope.cambio = $scope.formatoDecimal($scope.cambio);
-                    //alert("Cambio: $" + $scope.cambio);
                     Swal.fire({
                         html: '<h2>Total: $' + $scope.formatoDecimal($scope.total) + '</h2>---------------------------------------------------------<br><h1>Cambio: $' + $scope.cambio + '</h1>',
                     });
                 }
-                $scope.registrarVenta();
-                toastr.success("Venta realizada", "Listo!");
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": true,
-                    "progressBar": true,
-                    "positionClass": "toast-top-left",
-                    "preventDuplicates": true,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
+                else if($scope.pago == $scope.total){
+                    Swal.fire({
+                        html: '<h1>Venta realizada</h1>',
+                    });    
                 }
+                $scope.registrarVenta();
+                
                 $scope.total = 0;
                 $scope.articulos = [];
                 $scope.pago = "";
@@ -203,28 +157,42 @@ var app = angular.module("tiendita", [])
             else {
                 console.log("El pago es menor al total");
                 $scope.pago = "";
-                toastr.error("El monto que ingresó no cubre el total del ticket", "Ha ocurrido un error!");
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": true,
-                    "progressBar": true,
-                    "positionClass": "toast-top-left",
-                    "preventDuplicates": true,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
+                
             }
         }
         else {
             $scope.pago = "";
         }
     };
+
+    $scope.importeGasto;
+    $scope.saldo = 0;
+    $scope.buttonE = true;
+    $scope.setSaldo = function (s) {
+        $scope.saldo = s;
+    }
+    $scope.expensesButton = function () {
+        if($scope.saldo >= $scope.importeGasto){
+            $scope.buttonE = false;
+        }
+        else{
+            $scope.buttonE = true;
+        }
+    }
+    $scope.deleteAll = function () {
+        Swal.fire({
+            html: '<h2>¿Quieres eliminar todos los registros? </h2><br> <a href="/delete"><button class="btn btn-secondary col-12">Borrar todo</button></a><br><a href="/reports"><button class="btn btn-success col-12">Cancelar</button></a>',
+            showCancelButton: false,
+            showConfirmButton: false
+        });      
+    };
+
+    $scope.corte = function () {
+        Swal.fire({
+            html: '<h2>Registrar corte de caja</h2><br> <a href="/cashCut"><button class="btn btn-secondary col-12">Hacer corte</button></a><br><a href="/reports"><button class="btn btn-success col-12">Cancelar</button></a>',
+            showCancelButton: false,
+            showConfirmButton: false
+        });
+    }
+
 });
