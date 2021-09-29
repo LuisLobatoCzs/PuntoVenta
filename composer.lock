@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "a0b0bedfa127f2a271338603056f4a9b",
+=======
+    "content-hash": "c45d18eb8faea2372f484fc2e850404c",
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1292,6 +1296,7 @@
             "time": "2021-01-23T16:37:31+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "mike42/escpos-php",
             "version": "v3.0",
             "source": {
@@ -1398,6 +1403,8 @@
             "time": "2019-10-05T02:44:33+00:00"
         },
         {
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
             "name": "monolog/monolog",
             "version": "1.26.0",
             "source": {

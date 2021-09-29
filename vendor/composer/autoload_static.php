@@ -15,7 +15,26 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+<<<<<<< HEAD
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+=======
+        '3af723442581d6c310bf44543f9f5c60' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/adjoint.php',
+        'd803221834c8b57fec95debb5406a797' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/antidiagonal.php',
+        '4714cafbd3be4c72c274a25eae9396bb' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/cofactors.php',
+        '89719dc7c77436609d1c1c31f0797b8f' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/determinant.php',
+        'c28af79ec7730859d83f2d4310b8dd0b' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/diagonal.php',
+        'c5d82bf1ac485e445f911e55789ab4e6' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/identity.php',
+        '0d2d594de24a247f7a33499e933aa21e' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/inverse.php',
+        'f37c25880804a014ef40c8bffbab1b10' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/minors.php',
+        'd6e4e42171df0dbea253b3067fefda38' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/trace.php',
+        '2c9b19fa954fd3e6fcc7e7a1383caddd' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/transpose.php',
+        '0a538fc9b897450ec362480ebbebe94f' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/add.php',
+        'f0843f7f4089ec2343c7445544356385' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/directsum.php',
+        'ad3e8c29aa16d134661a414265677b61' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/subtract.php',
+        '8d37dad4703fab45bfec9dd0bbf3278e' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/multiply.php',
+        '4888a6f58c08148ebe17682f9ce9b2a8' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/divideby.php',
+        'eef6fa3879d3efa347cd24d5eb348f85' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/divideinto.php',
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
         'abede361264e2ae69ec1eee813a101af' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/abs.php',
         '21a5860fbef5be28db5ddfbc3cca67c4' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/acos.php',
         '1546e3f9d127f2a9bb2d1b6c31c26ef1' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/acosh.php',
@@ -58,6 +77,7 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
         '883af48563631547925fa4c3b48ead07' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/multiply.php',
         'f190e3308e6ca23234a2875edc985c03' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/divideby.php',
         'ac9e33ce6841aa5bf5d16d465a2f03a7' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/divideinto.php',
+<<<<<<< HEAD
         '3af723442581d6c310bf44543f9f5c60' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/adjoint.php',
         'd803221834c8b57fec95debb5406a797' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/antidiagonal.php',
         '4714cafbd3be4c72c274a25eae9396bb' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/cofactors.php',
@@ -74,6 +94,9 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
         '8d37dad4703fab45bfec9dd0bbf3278e' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/multiply.php',
         '4888a6f58c08148ebe17682f9ce9b2a8' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/divideby.php',
         'eef6fa3879d3efa347cd24d5eb348f85' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/divideinto.php',
+=======
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
@@ -147,7 +170,10 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
         array (
             'MyCLabs\\Enum\\' => 13,
             'Monolog\\' => 8,
+<<<<<<< HEAD
             'Mike42\\' => 7,
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
             'Matrix\\' => 7,
             'Maatwebsite\\Excel\\' => 18,
         ),
@@ -324,8 +350,13 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
         ),
         'Psr\\Http\\Message\\' => 
         array (
+<<<<<<< HEAD
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
             1 => __DIR__ . '/..' . '/psr/http-message/src',
+=======
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -355,11 +386,14 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+<<<<<<< HEAD
         'Mike42\\' => 
         array (
             0 => __DIR__ . '/..' . '/mike42/gfx-php/src/Mike42',
             1 => __DIR__ . '/..' . '/mike42/escpos-php/src/Mike42',
         ),
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
         'Matrix\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
@@ -480,7 +514,10 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+<<<<<<< HEAD
         'App\\Exports\\Export' => __DIR__ . '/../..' . '/app/Exports/Export.php',
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -2596,6 +2633,7 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
         'Matrix\\Operators\\Multiplication' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Multiplication.php',
         'Matrix\\Operators\\Operator' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Operator.php',
         'Matrix\\Operators\\Subtraction' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Subtraction.php',
+<<<<<<< HEAD
         'Mike42\\Escpos\\CapabilityProfile' => __DIR__ . '/..' . '/mike42/escpos-php/src/Mike42/Escpos/CapabilityProfile.php',
         'Mike42\\Escpos\\CodePage' => __DIR__ . '/..' . '/mike42/escpos-php/src/Mike42/Escpos/CodePage.php',
         'Mike42\\Escpos\\Devices\\AuresCustomerDisplay' => __DIR__ . '/..' . '/mike42/escpos-php/src/Mike42/Escpos/Devices/AuresCustomerDisplay.php',
@@ -2673,6 +2711,8 @@ class ComposerStaticInit5e0f0c491f3b91c1d403f1f821cdef93
         'Mike42\\GfxPhp\\Util\\LzwDecodeDictionary' => __DIR__ . '/..' . '/mike42/gfx-php/src/Mike42/GfxPhp/Util/LzwDecodeDictionary.php',
         'Mike42\\GfxPhp\\Util\\LzwEncodeBuffer' => __DIR__ . '/..' . '/mike42/gfx-php/src/Mike42/GfxPhp/Util/LzwEncodeBuffer.php',
         'Mike42\\GfxPhp\\Util\\LzwEncodeDictionary' => __DIR__ . '/..' . '/mike42/gfx-php/src/Mike42/GfxPhp/Util/LzwEncodeDictionary.php',
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',

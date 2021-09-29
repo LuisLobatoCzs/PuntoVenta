@@ -29,7 +29,14 @@ Route::get('/', function () {
 });
 
 Route::get('/backup', function() {
+<<<<<<< HEAD
     return (new Export)->download("ReporteDeVentas.xlsx");
+=======
+    date_default_timezone_set("America/Monterrey");
+    $fecha = date("Y-m-d");
+    echo "Se a descargado su reporte mensual programado";
+    return ((new Export)->download("ReporteDeVentas_".$fecha.".xlsx"));
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
 });
 Auth::routes();
 
@@ -71,8 +78,11 @@ Route::post('/updateProduct', 'HomeController@updateProduct')->name('updateProdu
 
 Route::get('/deleteProduct', 'HomeController@deleteProduct')->name('deleteProduct');
 
+<<<<<<< HEAD
 Route::post('/finder', 'HomeController@buscador')->name('finder');
 
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
 Route::get('/locked', function () {
     return view('locked');
 });
@@ -86,8 +96,11 @@ Route::get('/delete', function(){
 });
 */
 Route::get('/cashCut', 'HomeController@cashCut')->name('cashCut');
+<<<<<<< HEAD
 
 Route::get('/cut', 'HomeController@cut')->name('cut');
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
 
 Route::get('/preview', function () {
     return view('exports.reports');

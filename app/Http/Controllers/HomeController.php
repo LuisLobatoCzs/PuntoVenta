@@ -9,12 +9,15 @@ use App\Exports\Export;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use App\Services\GitHub;
+<<<<<<< HEAD
 use Exception;
 
 require '../vendor/autoload.php';
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
 
 class HomeController extends Controller
 {
@@ -263,10 +266,17 @@ class HomeController extends Controller
             $saldo=0;
             while($i<$totalReportes){
                 if($reportes[$i]->corteCaja != 1){
+<<<<<<< HEAD
                     if($reportes[$i]->venta == 1 || $reportes[$i]->deposito == 1){
                         $saldo = $saldo+$reportes[$i]->importe;
                     }
                     else if($reportes[$i]->gasto == 1 || $reportes[$i]->retiro == 1){
+=======
+                    if($reportes[$i]->venta == 1){
+                        $saldo = $saldo+$reportes[$i]->importe;
+                    }
+                    else{
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
                         $saldo = $saldo-$reportes[$i]->importe;
                     }
                 }
@@ -320,10 +330,17 @@ class HomeController extends Controller
         $i=0;
         $saldo=0;
         while($i<$totalReportes){
+<<<<<<< HEAD
             if($reportes[$i]->venta == 1 || $reportes[$i]->deposito == 1){
                 $saldo = $saldo+$reportes[$i]->importe;
             }
             else if($reportes[$i]->gasto == 1 || $reportes[$i]->retiro == 1){
+=======
+            if($reportes[$i]->venta == 1){
+                $saldo = $saldo+$reportes[$i]->importe;
+            }
+            else{
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
                 $saldo = $saldo-$reportes[$i]->importe;
             }
             $i++;
@@ -641,6 +658,7 @@ class HomeController extends Controller
     
         }
         return $this->reports();
+<<<<<<< HEAD
     }
 
     public function cut(){
@@ -677,5 +695,7 @@ class HomeController extends Controller
             }
             return view('corte')->with(compact('reportes','totalReportes', 'saldo'));
         }
+=======
+>>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
     }
 }
