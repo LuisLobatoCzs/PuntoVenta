@@ -40,7 +40,6 @@
                             $i=0;
                             while($i<$totalReportes){
                                 if($reportes[$i]->corteCaja == 1){
-<<<<<<< HEAD
                                     echo'    
                                         <tr>
                                             <td class="btn-info">'.$reportes[$i]->concepto.'</td>
@@ -54,14 +53,6 @@
                                         <tr>
                                             <td>'.$reportes[$i]->concepto.'</td>
                                             <td>'.$reportes[$i]->fecha.'</td>
-=======
-                                    echo '    
-                                            <tr>
-                                                <td class="btn-info">'.$reportes[$i]->concepto.'</td>
-                                                <td class="btn-info">'.$reportes[$i]->fecha.'</td>
-                                                <td class="btn-info text-right">Corte de Caja por $'.$reportes[$i]->importe.'</td>
-                                            </tr>
->>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
                                     ';
                                     if($reportes[$i]->venta == 1){
                                         echo '

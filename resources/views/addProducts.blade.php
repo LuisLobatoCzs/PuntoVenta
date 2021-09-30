@@ -84,21 +84,12 @@
                                             <option value="Bebidas">Bebidas</option>
                                             <option value="Embutidos" >Embutidos</option>
                                             <option value="Lácteos">Lácteos</option>
-<<<<<<< HEAD
                                             <option value="Dulcería">Dulcería</option>
                                             <option value="Semillas">Semillas</option>
                                             <option value="Detergentes" >Detergentes</option>
                                             <option value="Mascotas">Mascotas</option>
                                             <option value="Farmacia" >Farmacia</option>
                                             <option selected value="Abarrotes">Abarrotes</option>
-=======
-                                            <option value="Frituras/Golosinas">Frituras/Golosinas</option>
-                                            <option value="Comestibles">Comestibles</option>
-                                            <option value="Higiene/Limpieza" >Higiene/Limpieza</option>
-                                            <option value="Mascotas">Mascotas</option>
-                                            <option value="Frutas/Verduras" >Frutas/Verduras</option>
-                                            <option selected value="Miscelaneos">Miscelaneos</option>
->>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
                                     </select>
                                 </div>
                             </div>

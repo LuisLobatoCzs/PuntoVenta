@@ -8,10 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-<<<<<<< HEAD
     'App\\Exports\\Export' => $baseDir . '/app/Exports/Export.php',
-=======
->>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
@@ -2127,7 +2124,6 @@ return array(
     'Matrix\\Operators\\Multiplication' => $vendorDir . '/markbaker/matrix/classes/src/Operators/Multiplication.php',
     'Matrix\\Operators\\Operator' => $vendorDir . '/markbaker/matrix/classes/src/Operators/Operator.php',
     'Matrix\\Operators\\Subtraction' => $vendorDir . '/markbaker/matrix/classes/src/Operators/Subtraction.php',
-<<<<<<< HEAD
     'Mike42\\Escpos\\CapabilityProfile' => $vendorDir . '/mike42/escpos-php/src/Mike42/Escpos/CapabilityProfile.php',
     'Mike42\\Escpos\\CodePage' => $vendorDir . '/mike42/escpos-php/src/Mike42/Escpos/CodePage.php',
     'Mike42\\Escpos\\Devices\\AuresCustomerDisplay' => $vendorDir . '/mike42/escpos-php/src/Mike42/Escpos/Devices/AuresCustomerDisplay.php',
@@ -2205,8 +2201,6 @@ return array(
     'Mike42\\GfxPhp\\Util\\LzwDecodeDictionary' => $vendorDir . '/mike42/gfx-php/src/Mike42/GfxPhp/Util/LzwDecodeDictionary.php',
     'Mike42\\GfxPhp\\Util\\LzwEncodeBuffer' => $vendorDir . '/mike42/gfx-php/src/Mike42/GfxPhp/Util/LzwEncodeBuffer.php',
     'Mike42\\GfxPhp\\Util\\LzwEncodeDictionary' => $vendorDir . '/mike42/gfx-php/src/Mike42/GfxPhp/Util/LzwEncodeDictionary.php',
-=======
->>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
     'Mockery' => $vendorDir . '/mockery/mockery/library/Mockery.php',
     'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
     'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',

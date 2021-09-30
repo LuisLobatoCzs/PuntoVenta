@@ -29,11 +29,7 @@
             Suma de los cortes de hoy: $<?php echo $sumCortes;?> 
         </div>
     </div>
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
     <div class="row justify-content-center">
         <div class="col-12 col-md-11  align=center">
             <div class="table-responsive">

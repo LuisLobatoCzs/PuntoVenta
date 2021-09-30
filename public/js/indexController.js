@@ -148,36 +148,11 @@
                     });
                 }
                 else if($scope.pago == $scope.total){
-<<<<<<< HEAD
                     $scope.cambio = 0;
                     $scope.cambio = $scope.formatoDecimal($scope.cambio);
                     Swal.fire({
                         html: '<h1>Venta realizada</h1>',
                     });    
-=======
-                    Swal.fire({
-                        html: '<h1>Venta realizada</h1>',
-                    });    
-                }
-                $scope.registrarVenta();
-                toastr.success("Venta realizada", "Listo!");
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": true,
-                    "progressBar": true,
-                    "positionClass": "toast-top-left",
-                    "preventDuplicates": true,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
->>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
                 }
                 $scope.registrarVenta();
                 
@@ -226,7 +201,6 @@
         });
     }
 
-<<<<<<< HEAD
     $scope.articulo = {};
     $scope.buscador = function (admin) {
         var i = 0;
@@ -426,6 +400,3 @@
         }
     }
 });
-=======
-});
->>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec

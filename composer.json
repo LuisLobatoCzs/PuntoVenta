@@ -9,12 +9,8 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-<<<<<<< HEAD
         "maatwebsite/excel": "^3.1",
         "mike42/escpos-php": "^3.0"
-=======
-        "maatwebsite/excel": "^3.1"
->>>>>>> 32dda2e9e737a3b3a6d2f65b3906478f118518ec
     },
     "require-dev": {
         "filp/whoops": "~2.0",
