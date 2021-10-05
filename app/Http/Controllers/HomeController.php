@@ -146,7 +146,8 @@ class HomeController extends Controller
                     'precioCompra' => $request->precioCompra,
                     'precioVenta' => $request->precioVenta,
                     'categoria' => $request->categoria,
-                    'stock'=> $request->stock
+                    'stock'=> $request->stock,
+                    'stock_inicial'=> $request->stock
                 ]);
             $productos = DB::table('productos')
                             ->orderBy('nombre')
@@ -171,7 +172,8 @@ class HomeController extends Controller
                     'precioCompra' => $request->precioCompra,
                     'precioVenta' => $request->precioVenta,
                     'categoria' => $request->categoria,
-                    'stock'=> $request->stock
+                    'stock'=> $request->stock,
+                    'stock_inicial'=> $request->stock
                 ]);
             }
             else{
@@ -183,6 +185,7 @@ class HomeController extends Controller
                             'precioVenta' => $request->precioVenta,
                             'categoria' => $request->categoria,
                             'stock'=> $request->stock,
+                            'stock_inicial'=> $request->stock,
                             'status' => 1
                         ]);
             }
