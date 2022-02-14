@@ -30,7 +30,9 @@ Route::get('/', function () {
 });
 
 Route::get('/backup', function() {
-    return (new Export)->download("ReporteDeVentas.xlsx");
+    date_default_timezone_set("America/Monterrey");
+    $fecha = date("Y-m-d");
+    return (new Export)->download("ReporteDeVentas ".$fecha.".xlsx");
 });
 Auth::routes();
 
