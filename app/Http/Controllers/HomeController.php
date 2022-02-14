@@ -9,6 +9,12 @@ use App\Exports\Export;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use App\Services\GitHub;
+use Exception;
+
+require '../vendor/autoload.php';
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 
 class HomeController extends Controller
 {
@@ -140,7 +146,8 @@ class HomeController extends Controller
                     'precioCompra' => $request->precioCompra,
                     'precioVenta' => $request->precioVenta,
                     'categoria' => $request->categoria,
-                    'stock'=> $request->stock
+                    'stock'=> $request->stock,
+                    'stock_inicial'=> $request->stock
                 ]);
             $productos = DB::table('productos')
                             ->orderBy('nombre')
@@ -165,7 +172,8 @@ class HomeController extends Controller
                     'precioCompra' => $request->precioCompra,
                     'precioVenta' => $request->precioVenta,
                     'categoria' => $request->categoria,
-                    'stock'=> $request->stock
+                    'stock'=> $request->stock,
+                    'stock_inicial'=> $request->stock
                 ]);
             }
             else{
@@ -177,6 +185,7 @@ class HomeController extends Controller
                             'precioVenta' => $request->precioVenta,
                             'categoria' => $request->categoria,
                             'stock'=> $request->stock,
+                            'stock_inicial'=> $request->stock,
                             'status' => 1
                         ]);
             }
@@ -423,6 +432,8 @@ class HomeController extends Controller
     public function sellreg(Request $request){
         $json = $request->data;
         $total = $request->total;
+        $pago = $request->pago;
+        $cambio = $request->cambio;
         $productos = json_decode($json);
         $totalProductos = count($productos);
         $i=0;
@@ -443,6 +454,38 @@ class HomeController extends Controller
 
             $i++;
         }
+
+        $i=0;
+        $detalleVenta = "";
+        while($i<$totalProductos){
+            $productoT = DB::table('productos')
+                    ->where('codigoBarras', $productos[$i]->codigoBarras)
+                    ->get();
+
+            $importe = $productos[$i]->cantidad * $productoT[0]->precioVenta;
+            $importe = number_format($importe, 2, '.', '');
+            $nombre = $productoT[0]->nombre;
+            $tam = strlen($nombre);
+            if($tam < 19){
+                $j=0;
+                while($j<19-$tam){
+                    $nombre = $nombre." ";
+                    $j++;
+                }
+            }
+            else{
+                $nombre = substr($nombre,0,19);
+            }
+
+            $cantidad = $productos[$i]->cantidad;
+            if(strlen($cantidad)<2){
+                $cantidad = "0".$cantidad;
+            }
+
+            $detalleVenta = $detalleVenta.$cantidad."  ".$nombre."   $".$importe."<br>";
+            $i++;
+        }
+
         date_default_timezone_set("America/Monterrey");
         $fecha = date("Y-m-d H:i:s");
         DB::table('transacciones')->insert([
@@ -450,8 +493,86 @@ class HomeController extends Controller
             'fecha' => $fecha,
             'importe' => $total,
             'venta' => 1,
-            'concepto' => 'Venta realizada por '.Auth::user()->user
+            'concepto' => 'Venta realizada por '.Auth::user()->user,
+            'detalle' => $detalleVenta,
         ]);
+
+        //////////////////////////////////////////////////////
+        //////          IMPRESIÓN DE TICKET             //////
+        //////////////////////////////////////////////////////
+
+        /******* NOTA. Máximo 32 caracteres por linea *******/
+
+        /* Conexión con la impresora */
+        $connector = new WindowsPrintConnector(env('PRINTER_NAME'));
+        $printer = new Printer($connector);
+    
+        /* Imprime Isotipo */
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        try{
+            $logo = EscposImage::load('img/'.env('PRINTER_LOGO'), false);
+            $printer->bitImage($logo);
+        }catch(Exception $e){}
+
+        /* Espaciado */
+        $printer->feed(3);
+
+        /* Imprime detalles del ticket */
+        $printer->text(date("Y-m-d H:i:s") . "\n");
+        $printer->feed(1);
+        $printer->setJustification(Printer::JUSTIFY_LEFT);
+        $printer->text("CANT.    DESCRIPCION    IMPORTE" . "\n");
+        $printer->text("................................" . "\n");
+        $i=0;
+        while($i<$totalProductos){
+            $productoT = DB::table('productos')
+                    ->where('codigoBarras', $productos[$i]->codigoBarras)
+                    ->get();
+
+            $importe = $productos[$i]->cantidad * $productoT[0]->precioVenta;
+            $importe = number_format($importe, 2, '.', '');
+            $nombre = $productoT[0]->nombre;
+            $tam = strlen($nombre);
+            if($tam < 19){
+                $j=0;
+                while($j<19-$tam){
+                    $nombre = $nombre." ";
+                    $j++;
+                }
+            }
+            else{
+                $nombre = substr($nombre,0,19);
+            }
+
+            $cantidad = $productos[$i]->cantidad;
+            if(strlen($cantidad)<2){
+                $cantidad = "0".$cantidad;
+            }
+
+            $printer->text($cantidad."  ".$nombre."   $".$importe."\n");
+            $i++;
+        }
+
+        $printer->text("................................" . "\n");
+        $printer->setJustification(Printer::JUSTIFY_RIGHT);
+        $printer->text("TOTAL:       $".$total."\n");
+        $printer->text("EFECTIVO:    $".$pago."\n");
+        $printer->text("CAMBIO:      $".$cambio."\n");
+
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        $printer->feed(1);
+        $printer->text("Gracias por su compra :)" . "\n");
+        
+        /* Apertura del cajón */
+        $printer->pulse();
+        /* Corte de papel */
+        $printer->cut();
+        /* Cerrar la conexión con la impresora */
+        $printer->close();
+
+        //////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////
+
         return view('sell');
     }
 

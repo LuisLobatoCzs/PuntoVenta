@@ -2,6 +2,7 @@
 
 use App\Exports\Export;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,11 +66,39 @@ Route::post('/addExpenses', 'HomeController@addExpense')->name('addExpenses');
 
 Route::get('/reports','HomeController@reports')->name('reports');
 
-Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
+//Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
+Route::get('/productsJSON', function() {
+    $consulta = DB::table('productos')
+                        ->select('codigoBarras', 'nombre', 'precioCompra', 'precioVenta', 'stock', 'unidadMedida')
+                        ->where('status',1)
+                        ->get();
+    $total = $consulta->count();
+    
+    $productos='{ "productos": [';
+    for($i=0; $i<$total; $i++){
+        $productos = $productos.'{';
+        $productos = $productos.'"codigoBarras": "'.$consulta[$i]->codigoBarras.'",';
+        $productos = $productos.'"nombre": "'.$consulta[$i]->nombre.'",';
+        $productos = $productos.'"precioCompra": "'.$consulta[$i]->precioCompra.'",';
+        $productos = $productos.'"precioVenta": "'.$consulta[$i]->precioVenta.'",';
+        $productos = $productos.'"stock": "'.$consulta[$i]->stock.'",';
+        $productos = $productos.'"unidadMedida": "'.$consulta[$i]->unidadMedida.'"';
+        if($i == $total-1){
+            $productos = $productos.'}';
+        }
+        else{
+            $productos = $productos.'},';
+        }
+    }
+    $productos = $productos.'] }';
+    return $productos;
+});
 
 Route::post('/updateProduct', 'HomeController@updateProduct')->name('updateProduct');
 
 Route::get('/deleteProduct', 'HomeController@deleteProduct')->name('deleteProduct');
+
+Route::post('/finder', 'HomeController@buscador')->name('finder');
 
 Route::get('/locked', function () {
     return view('locked');

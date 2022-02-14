@@ -37,7 +37,7 @@
                     <thead class="thead">
                         <tr>
                             <th>Concepto</th>
-                            <th>Fecha</th>
+                            <th>Hora</th>
                             <th>Monto</th>
                         </tr>
                     </thead>
@@ -49,7 +49,7 @@
                                     echo '    
                                         <tr>
                                             <td class="btn-info">'.$reportes[$i]->concepto.'</td>
-                                            <td class="btn-info">'.$reportes[$i]->fecha.'</td>
+                                            <td class="btn-info">'.substr($reportes[$i]->fecha,11,5).'</td>
                                             <td class="btn-secondary text-right"> $'.$reportes[$i]->importe.'</td>
                                         </tr>
                                     ';
@@ -57,12 +57,17 @@
                                 else{
                                     echo '    
                                         <tr>
-                                            <td>'.$reportes[$i]->concepto.'</td>
-                                            <td>'.$reportes[$i]->fecha.'</td>
+                                            <td ng-click="detail('.$i.')">
+                                                '.$reportes[$i]->concepto.'<br>
+                                                <div class="pl-5" ng-show="showArray['.$i.']">
+                                                    '.$reportes[$i]->detalle.'
+                                                </div>
+                                            </td>
+                                            <td>'.substr($reportes[$i]->fecha,11,5).'</td>
                                     ';
                                     if($reportes[$i]->venta == 1){
                                         echo '
-                                            <td class=" text-right">$'.$reportes[$i]->importe.'</td>
+                                            <td class="text-right">$'.$reportes[$i]->importe.'</td>
                                         </tr>
                                         ';
                                     }
