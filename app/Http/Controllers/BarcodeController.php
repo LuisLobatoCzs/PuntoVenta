@@ -10,7 +10,7 @@ use Exception;
 
 
 
-class CodebarController extends Controller
+class BarcodeController extends Controller
 {
     public function view(){
         return view('barcodeGenerator');
@@ -44,11 +44,11 @@ class CodebarController extends Controller
 
         if (!$download){
             // Solo muestra el código de barras en la vista en la que la ruta es invocada
-            CodebarController::barcode( $filepath,  $text, $size, $orientation, $code_type, $print, $sizefactor );
+            BarcodeController::barcode( $filepath,  $text, $size, $orientation, $code_type, $print, $sizefactor );
         }
         else{
             // Crea una imagen PNG en el directorio PUBLIC/barcodes con el código correspondiente
-            CodebarController::barcode('barcodes/'.$text.'.png',  $text, $size, $orientation, $code_type, $print, $sizefactor );
+            BarcodeController::barcode('barcodes/'.$text.'.png',  $text, $size, $orientation, $code_type, $print, $sizefactor );
             
             // Seleccionamos el fichero
             $pathToFile = public_path('barcodes/'.$text.'.png');
@@ -60,9 +60,6 @@ class CodebarController extends Controller
             return response()->download($pathToFile)->deleteFileAfterSend($shouldDelete = true);
             
         }
-    }
-    public function save(){
-        echo "ello";
     }
 
     public function barcode( $filepath="", $text="0", $size="20", $orientation="horizontal", $code_type="code128", $print=false, $SizeFactor=1 ) {
