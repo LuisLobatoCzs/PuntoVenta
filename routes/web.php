@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
+Route::get('/barcode', 'CodebarController@make')->name('barcode');
+Route::get('/generator', 'CodebarController@view')->name('generator');
+
 Route::get('/', function () {
     $usuario = Auth::user();
     if($usuario != null){

@@ -1,6 +1,6 @@
 <style>
     .margen{
-        margin-top:10vh;
+        margin-top:5vh;
     }
     .color1{
         background: #5DADE2;
@@ -121,8 +121,16 @@
                     </a>
                 </div>
                 <div class="col-10 col-sm-6 col-md-3  mt-4">
-                    <a href="" ng-click="enlace('<?php echo $localIP; ?>')">
+                    <a href="generator">
                         <div class="cuadro colorgris">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" viewBox="-70 0 640 512"><path fill="currentColor" d="M0 448V64h18v384H0zm26.857-.273V64H36v383.727h-9.143zm27.143 0V64h8.857v383.727H54zm44.857 0V64h8.857v383.727h-8.857zm36 0V64h17.714v383.727h-17.714zm44.857 0V64h8.857v383.727h-8.857zm18 0V64h8.857v383.727h-8.857zm18 0V64h8.857v383.727h-8.857zm35.715 0V64h18v383.727h-18zm44.857 0V64h18v383.727h-18zm35.999 0V64h18.001v383.727h-18.001zm36.001 0V64h18.001v383.727h-18.001zm26.857 0V64h18v383.727h-18zm45.143 0V64h26.857v383.727h-26.857zm35.714 0V64h9.143v383.727H476zm18 .273V64h18v384h-18z"/></svg>
+                            Generador
+                        </div>
+                    </a>
+                </div>
+                <div class="col-10 col-sm-6 col-md-3  mt-4">
+                    <a href="" ng-click="enlace('<?php echo $localIP; ?>')">
+                        <div class="cuadro color1">
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="laptop-house" class="svg-inline--fa fa-laptop-house fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M272,288H208a16,16,0,0,1-16-16V208a16,16,0,0,1,16-16h64a16,16,0,0,1,16,16v37.12C299.11,232.24,315,224,332.8,224H469.74l6.65-7.53A16.51,16.51,0,0,0,480,207a16.31,16.31,0,0,0-4.75-10.61L416,144V48a16,16,0,0,0-16-16H368a16,16,0,0,0-16,16V87.3L263.5,8.92C258,4,247.45,0,240.05,0s-17.93,4-23.47,8.92L4.78,196.42A16.15,16.15,0,0,0,0,207a16.4,16.4,0,0,0,3.55,9.39L22.34,237.7A16.22,16.22,0,0,0,33,242.48,16.51,16.51,0,0,0,42.34,239L64,219.88V384a32,32,0,0,0,32,32H272ZM629.33,448H592V288c0-17.67-12.89-32-28.8-32H332.8c-15.91,0-28.8,14.33-28.8,32V448H266.67A10.67,10.67,0,0,0,256,458.67v10.66A42.82,42.82,0,0,0,298.6,512H597.4A42.82,42.82,0,0,0,640,469.33V458.67A10.67,10.67,0,0,0,629.33,448ZM544,448H352V304H544Z"></path></svg>
                             Red local
                         </div>

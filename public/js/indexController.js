@@ -436,4 +436,9 @@
                 break;
         }
     }
+
+    $scope.barcodeSize = 75;
+    $scope.barcodeSizeFactor = 1;
+    $scope.barcodeOrientation = "horizontal";
+    $scope.barcodeName = true;
 });
