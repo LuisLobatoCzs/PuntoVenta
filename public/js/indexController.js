@@ -18,7 +18,25 @@
     $scope.enlace = function (ip) {
         Swal.fire({
             html: '<h1>http://'+ip+'</h1>',
-        });
+            showDenyButton: true,
+            denyButtonText: 'Apagar servidor',
+        })
+        .then((result) => {
+            if (result.isDenied) {
+                Swal.fire({
+                    icon: 'info',
+                    text: 'Esto cerrará el sistema y apagará el servidor, desea continuar?',
+                    showCancelButton: true,
+                    denyButtonText: 'Cancelar',
+                    confirmButtonText: 'Continuar y apagar',
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/shutdown";
+                    }
+                })
+            }
+        })
     }
 
     $scope.showArray = [false];

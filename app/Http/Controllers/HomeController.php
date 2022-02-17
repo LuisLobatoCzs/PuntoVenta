@@ -714,4 +714,9 @@ class HomeController extends Controller
             return view('corte')->with(compact('reportes','totalReportes', 'saldo'));
         }
     }
+
+    public function shutdown () {
+        return view('shutdown');
+       // shell_exec("shutdown -s -f -t 60");
+    }
 }

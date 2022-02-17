@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\DB;
 Route::get('/barcode', 'BarcodeController@make')->name('barcode');
 Route::get('/generator', 'BarcodeController@view')->name('generator');
 
+Route::get('/shutdown', 'HomeController@shutdown')->name('shutdown');
+
 Route::get('/', function () {
     $usuario = Auth::user();
     if($usuario != null){
