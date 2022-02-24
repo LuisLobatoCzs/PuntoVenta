@@ -95,14 +95,17 @@
 
                         <div class="form-group">
                             <div class="row centrarY justify-content-center">
-                                <div class="form-check">
-                                    <input ng-model="barcodeName" class="form-check-input" type="checkbox" value="" id="barcodeName">
-                                    <label class="form-check-label" for="barcodeName">
+                                <div class="custom-control custom-switch">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="barcodeName" ng-model="barcodeName">
+                                    <label class="custom-control-label" for="barcodeName">
                                         Agregar leyenda
                                     </label>
                                 </div>
                             </div>
                         </div>
+
+                        <br>
 
                         <div class="row justify-content-center">
                             <div ng-cloak class="col-sm-8 col-md-6 col-10 centrarXY" ng-hide='barcode != null ? false : true'>
