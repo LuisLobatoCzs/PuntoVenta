@@ -9,7 +9,7 @@
     }
     .cuadro{
         padding: 25px;
-        padding-top: 70px;
+        padding-top: 50px;
     }
     .contorno {
         border-width: 2px;
@@ -23,7 +23,7 @@
 @section('content')
 <div class="col-12">
     <div class="row justify-content-center">
-        <div class="col-xl-5 cuadro">
+        <div class="col-xl-7 cuadro">
             <div class="card border-primary mb-3">
                 <div class="card-header">
                     <div class="row centrarY">
@@ -74,7 +74,32 @@
                                     <input id="precioVenta" placeholder="Ingresa precio venta" type="number" step="0.01" min="0" class="form-control" name="precioVenta" required>
                                 </div>
                             </div>
-                        </div>   
+                        </div>
+
+                                        <!-- no se si quedo bien -->    
+                        <div class="form-group">
+                            <div class="row centrarY">
+                                <label for="precioMedioMayoreo" class="col-lg-4 col-xl-4 text-right control-label">Medio-mayoreo:</label>       
+                                <div class="col-lg-7 col-xl-7">
+                                    <div class="row">
+                                        <div class= "col-6"><input id="####" placeholder="Precio" type="number" step="0.01" min="0" class="form-control" name="####" required></div>
+                                        <div class= "col-6"><input id="####" placeholder="Medio-mayoreo " type="number" step="0.01" min="0" class="form-control" name="###" required></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row centrarY">
+                                <label for="precioMayoreo" class="col-lg-4 col-xl-4 text-right control-label">Mayoreo:</label>       
+                                <div class="col-lg-7 col-xl-7">
+                                    <div class="row">
+                                        <div class= "col-6"><input id="####" placeholder="Precio" type="number" step="0.01" min="0" class="form-control" name="####" required></div>
+                                        <div class= "col-6"><input id="####" placeholder="Mayoreo " type="number" step="0.01" min="0" class="form-control" name="###" required></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         
                         <div class="form-group">
                             <div class="row centrarY">
                                 <label for="categoria" class="col-lg-4 col-xl-4 text-right control-label">Categoría:</label>
