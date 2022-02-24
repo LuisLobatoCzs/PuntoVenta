@@ -73,6 +73,8 @@ Route::post('/addExpenses', 'HomeController@addExpense')->name('addExpenses');
 
 Route::get('/reports','HomeController@reports')->name('reports');
 
+Route::get('/bstock','HomeController@bstock')->name('bstock');
+
 //Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
 Route::get('/productsJSON', function() {
     $consulta = DB::table('productos')

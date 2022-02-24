@@ -86,6 +86,23 @@ class HomeController extends Controller
         }
     } 
 
+    //// lo hice yop perdon si esta mal =(
+    public function bstock(){
+        if(Auth::user()->rol == 1){
+            return view('home');
+        }
+        else{
+            $productos = DB::table('productos')
+                            ->where('status',1)
+                            ->orderBy('nombre')
+                            ->get();
+            $totalProductos = $productos->count();
+            return view('bstock')->with(compact('productos','totalProductos'));
+        }
+    } 
+
+    ////  pirdon =( 
+
     public function modifyE(Request $request){
         if(Auth::user()->rol == 1){
             return view('home');
