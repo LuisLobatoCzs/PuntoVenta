@@ -110,7 +110,7 @@
                     <div class="col-12 text-center">
                         <h2>Bebidas</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -120,7 +120,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -138,7 +137,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
@@ -164,7 +162,7 @@
                     <div class="col-12 text-center">
                         <h2>Embutidos</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -174,7 +172,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -192,7 +189,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
@@ -218,7 +214,7 @@
                     <div class="col-12 text-center">
                         <h2>Lácteos</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -228,7 +224,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -246,7 +241,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
@@ -272,7 +266,7 @@
                     <div class="col-12 text-center">
                         <h2>Dulcería</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -282,7 +276,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -300,7 +293,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
@@ -326,7 +318,7 @@
                     <div class="col-12 text-center">
                         <h2>Semillas</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -336,7 +328,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -354,7 +345,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
@@ -380,7 +370,7 @@
                     <div class="col-12 text-center">
                         <h2>Detergentes</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -390,7 +380,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -408,7 +397,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
@@ -434,7 +422,7 @@
                     <div class="col-12 text-center">
                         <h2>Productos para mascotas</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -444,7 +432,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -462,7 +449,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
@@ -488,7 +474,7 @@
                     <div class="col-12 text-center">
                         <h2>Farmacia</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -498,7 +484,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -516,7 +501,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
@@ -542,7 +526,7 @@
                     <div class="col-12 text-center">
                         <h2>Abarrotes</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -552,7 +536,6 @@
                                         <th>Nombre</th>
                                         <th class="text-center">Compra</th>
                                         <th class="text-center">Venta</th>
-                                        <th class="text-center">Categoria</th>
                                         <th class="text-center">Stock</th>
                                         <th class="text-center">Opciones</th>
                                     </tr>
@@ -570,7 +553,6 @@
                                                 <td>'.$productos[$i]->nombre.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
                                                 <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
-                                                <td class="text-center">'.$productos[$i]->categoria.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
                                                 <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
