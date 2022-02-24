@@ -49,7 +49,7 @@
         }
     }
 ?>
-<div class="col-12" ng-init="export()">
+<div class="col-12">
     <div class="row centrarY">    
         <div class="col-12 col-md-8 text-center">
             <h3>Bajo inventario</h3>
@@ -63,15 +63,117 @@
                 <table class="table">
                     <thead class="thead">
                         <tr>
-                            <th class="text-center" ng-click="setCategoria(1)"> <button class="btn btn-success">Bebidas</button> </th>
-                            <th class="text-center" ng-click="setCategoria(2)"> <button class="btn btn-success">Embutidos</button> </th>
-                            <th class="text-center" ng-click="setCategoria(3)"> <button class="btn btn-success">Lácteos</button> </th>
-                            <th class="text-center" ng-click="setCategoria(4)"> <button class="btn btn-success">Dulcería</button> </th>
-                            <th class="text-center" ng-click="setCategoria(5)"> <button class="btn btn-success">Semillas</button> </th>
-                            <th class="text-center" ng-click="setCategoria(6)"> <button class="btn btn-success">Detergentes</button> </th>
-                            <th class="text-center" ng-click="setCategoria(7)"> <button class="btn btn-success">Farmacia</button> </th>
-                            <th class="text-center" ng-click="setCategoria(8)"> <button class="btn btn-success">Mascotas</button> </th>
-                            <th class="text-center" ng-click="setCategoria(9)"> <button class="btn btn-success">Abarrotes</button> </th>
+                            <?php 
+                                // Bebidas
+                                if($c1 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(1)" class="btn btn-success">Bebidas</button> </th>
+                                    ';
+                                }
+                                else{
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(1)" class="btn btn-success">Bebidas</button> </th>
+                                    ';
+                                }
+
+                                // Embutidos
+                                if($c2 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(2)" class="btn btn-success">Embutidos</button> </th>
+                                    ';
+                                }
+                                else{
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(2)" class="btn btn-success">Embutidos</button> </th>
+                                    ';
+                                }
+
+                                // Lacteos
+                                if($c3 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(3)" class="btn btn-success">Lácteos</button> </th>
+                                    ';
+                                }
+                                else{
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(3)" class="btn btn-success">Lácteos</button> </th>
+                                    ';
+                                }
+
+                                // Dulcería
+                                if($c4 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(4)" class="btn btn-success">Dulcería</button> </th>
+                                    ';
+                                }
+                                else{
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(4)" class="btn btn-success">Dulcería</button> </th>
+                                    ';
+                                }
+
+                                // Semillas
+                                if($c5 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(5)" class="btn btn-success">Semillas</button> </th>
+                                    ';
+                                }
+                                else{
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(5)" class="btn btn-success">Semillas</button> </th>
+                                    ';
+                                }
+
+                                // Detergentes
+                                if($c6 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(6)" class="btn btn-success">Detergentes</button> </th>
+                                    ';
+                                }
+                                else{
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(6)" class="btn btn-success">Detergentes</button> </th>
+                                    ';
+                                }
+
+                                // Mascotas
+                                if($c7 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(8)" class="btn btn-success">Mascotas</button> </th>
+                                    ';
+                                }
+                                else{
+
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(8)" class="btn btn-success">Mascotas</button> </th>
+                                    ';
+                                }
+
+                                // Farmacia
+                                if($c8 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(7)" class="btn btn-success">Farmacia</button> </th>
+                                    ';
+                                }
+                                else{
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(7)" class="btn btn-success">Farmacia</button> </th>
+                                    ';
+                                }
+
+                                // Abarrotes
+                                if($c9 > 0){
+                                    echo '
+                                        <th class="text-center"> <button ng-click="setCategoria(9)" class="btn btn-success">Abarrotes</button> </th>
+                                    ';
+                                }
+                                else{
+                                    echo '
+                                        <th class="text-center"> <button ng-disabled="true" ng-click="setCategoria(9)" class="btn btn-success">Abarrotes</button> </th>
+                                    ';
+                                }
+
+                            ?>
                         </tr>
                     </thead>
                 </table>
@@ -87,7 +189,7 @@
                     <div class="col-12 text-center">
                         <h2>Bebidas</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -95,7 +197,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -109,7 +214,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					 $conta++;
@@ -133,7 +241,7 @@
                     <div class="col-12 text-center">
                         <h2>Embutidos</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -141,7 +249,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -155,7 +266,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					$conta++;
@@ -179,7 +293,7 @@
                     <div class="col-12 text-center">
                         <h2>Lácteos</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -187,7 +301,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -201,7 +318,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					$conta++;
@@ -225,7 +345,7 @@
                     <div class="col-12 text-center">
                         <h2>Dulcería</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -233,7 +353,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -247,7 +370,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					$conta++;
@@ -271,7 +397,7 @@
                     <div class="col-12 text-center">
                         <h2>Semillas</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -279,7 +405,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -293,7 +422,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					$conta++;
@@ -317,7 +449,7 @@
                     <div class="col-12 text-center">
                         <h2>Detergentes</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -325,7 +457,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -339,7 +474,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					$conta++;
@@ -363,7 +501,7 @@
                     <div class="col-12 text-center">
                         <h2>Productos para mascotas</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -371,7 +509,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -385,7 +526,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					$conta++;
@@ -409,7 +553,7 @@
                     <div class="col-12 text-center">
                         <h2>Farmacia</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -417,7 +561,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -431,7 +578,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					$conta++;
@@ -455,7 +605,7 @@
                     <div class="col-12 text-center">
                         <h2>Abarrotes</h2>
                     </div>
-                    <div class="col-10 align=center">
+                    <div class="col-11 align=center">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead">
@@ -463,7 +613,10 @@
 					<th> # </th>
                                         <th class="text-center">Código</th>
                                         <th>Nombre</th>
+                                        <th class="text-center">Compra</th>
+                                        <th class="text-center">Venta</th>
                                         <th class="text-center">Stock</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -477,7 +630,10 @@
 						<th>'.$conta.'</th>
                                                 <td class="text-center">'.$productos[$i]->codigoBarras.'</td>
                                                 <td>'.$productos[$i]->nombre.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioCompra.'</td>
+                                                <td class="text-center">$'.$productos[$i]->precioVenta.'</td>
                                                 <td class="text-center">'.$productos[$i]->stock.'/'.$productos[$i]->stock_inicial.'</td>
+                                                <td class="text-center"><a href="/modifyP?id='.$productos[$i]->id_producto.'"><button class="btn btn-info">Modificar</button></a></td>
                                             </tr>
                                         ';
 					$conta++;

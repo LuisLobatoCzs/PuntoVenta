@@ -94,6 +94,7 @@ class HomeController extends Controller
         else{
             $productos = DB::table('productos')
                             ->where('status',1)
+                            ->where('stock','<=',env('LOW_STOCK'))
                             ->orderBy('nombre')
                             ->get();
             $totalProductos = $productos->count();
