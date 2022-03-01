@@ -78,7 +78,7 @@ Route::get('/bstock','HomeController@bstock')->name('bstock');
 //Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
 Route::get('/productsJSON', function() {
     $consulta = DB::table('productos')
-                        ->select('codigoBarras', 'nombre', 'precioCompra', 'precioVenta', 'stock', 'unidadMedida')
+                        ->select('codigoBarras', 'nombre', 'precioCompra', 'precioVenta', 'precioMedio', 'minimoMedio', 'precioMayoreo', 'minimoMayoreo', 'stock', 'unidadMedida')
                         ->where('status',1)
                         ->get();
     $total = $consulta->count();
@@ -90,6 +90,10 @@ Route::get('/productsJSON', function() {
         $productos = $productos.'"nombre": "'.$consulta[$i]->nombre.'",';
         $productos = $productos.'"precioCompra": "'.$consulta[$i]->precioCompra.'",';
         $productos = $productos.'"precioVenta": "'.$consulta[$i]->precioVenta.'",';
+        $productos = $productos.'"precioMedio": "'.$consulta[$i]->precioMedio.'",';
+        $productos = $productos.'"minimoMedio": "'.$consulta[$i]->minimoMedio.'",';
+        $productos = $productos.'"precioMayoreo": "'.$consulta[$i]->precioMayoreo.'",';
+        $productos = $productos.'"minimoMayoreo": "'.$consulta[$i]->minimoMayoreo.'",';
         $productos = $productos.'"stock": "'.$consulta[$i]->stock.'",';
         $productos = $productos.'"unidadMedida": "'.$consulta[$i]->unidadMedida.'"';
         if($i == $total-1){

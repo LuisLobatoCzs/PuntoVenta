@@ -70,15 +70,43 @@
     }; 
 
     $scope.less = function (idProduct) {
-        console.log("menos");
-        console.log(idProduct);
+        console.log("- "+idProduct);
+
         $scope.finder = false;
         var i = 0;
         while (i < $scope.articulos.length && $scope.finder === false) {
             if ($scope.articulos[i].codigoBarras === idProduct) {
+                $scope.finder = true;
+
                 $scope.articulos[i].cantidad = $scope.articulos[i].cantidad - 1;
-                $scope.articulos[i].importe = $scope.articulos[i].importe - $scope.articulos[i].precioUnitario
-                $scope.total = $scope.total - $scope.articulos[i].precioUnitario;
+                
+                //$scope.articulos[i].importe = $scope.articulos[i].importe - $scope.articulos[i].precioUnitario
+                //$scope.total = $scope.total - $scope.articulos[i].precioUnitario;
+
+                // Aplica precio mayoreo
+                if($scope.articulos[i].minimoMayoreo > 1    &&   $scope.articulos[i].cantidad >= $scope.articulos[i].minimoMayoreo){
+                    $scope.articulos[i].precioUnitario = $scope.articulos[i].precioMayoreo;
+                    $scope.articulos[i].importe = $scope.articulos[i].cantidad * $scope.articulos[i].precioMayoreo;
+                }
+                // Aplica precio medio mayoreo
+                else if($scope.articulos[i].minimoMedio > 1    &&   $scope.articulos[i].cantidad >= $scope.articulos[i].minimoMedio){
+                    $scope.articulos[i].precioUnitario = $scope.articulos[i].precioMedio;
+                    $scope.articulos[i].importe = $scope.articulos[i].cantidad * $scope.articulos[i].precioMedio;
+                }
+                // Aplica precio menudeo
+                else{
+                    $scope.articulos[i].precioUnitario = $scope.articulos[i].precioMenudeo;
+                    $scope.articulos[i].importe = $scope.articulos[i].cantidad * $scope.articulos[i].precioUnitario;
+                }
+                // Ajusta el total
+                j=0;
+                $scope.total = 0;
+                while(j<$scope.articulos.length){
+                    $scope.total = $scope.total + parseFloat($scope.articulos[j].importe);
+                    j++;
+                }
+                
+                // Si la cantidad total de este articulo es 0 se elimina de la lista de compras
                 if ($scope.articulos[i].cantidad === 0) {
                     $scope.articulos.splice(i, 1);
                 }
@@ -87,70 +115,139 @@
         }
     }
     $scope.plus = function (idProduct) {
-        console.log("mas");
-        console.log(idProduct);
+        console.log("+ "+idProduct);
         $scope.finder = false;
         var i = 0;
         while (i < $scope.articulos.length && $scope.finder === false) {
             if ($scope.articulos[i].codigoBarras === idProduct) {
+                $scope.finder = true;
+
                 $scope.articulos[i].cantidad = $scope.articulos[i].cantidad + 1;
-                $scope.articulos[i].importe = $scope.articulos[i].importe + parseFloat($scope.articulos[i].precioUnitario);
-                $scope.total = $scope.total + parseFloat($scope.articulos[i].precioUnitario);       
+
+                // Aplica precio mayoreo
+                if($scope.articulos[i].minimoMayoreo > 1    &&   $scope.articulos[i].cantidad >= $scope.articulos[i].minimoMayoreo){
+                    $scope.articulos[i].precioUnitario = $scope.articulos[i].precioMayoreo;
+                    $scope.articulos[i].importe = $scope.articulos[i].cantidad * $scope.articulos[i].precioMayoreo;
+                }
+                // Aplica precio medio mayoreo
+                else if($scope.articulos[i].minimoMedio > 1    &&   $scope.articulos[i].cantidad >= $scope.articulos[i].minimoMedio){
+                    $scope.articulos[i].precioUnitario = $scope.articulos[i].precioMedio;
+                    $scope.articulos[i].importe = $scope.articulos[i].cantidad * $scope.articulos[i].precioMedio;
+                }
+                // Aplica precio menudeo
+                else{
+                    $scope.articulos[i].importe = $scope.articulos[i].cantidad * $scope.articulos[i].precioUnitario;
+                }
+
+                j=0;
+                $scope.total = 0;
+                while(j<$scope.articulos.length){
+                    $scope.total = $scope.total + parseFloat($scope.articulos[j].importe);
+                    j++;
+                }
             }
             i++;
         }
     }
     $scope.setArticulo = function () {
         var i = 0;
+        var j = 0;
+        $scope.finder = false;
+
         if ($scope.codigoBarras === "") {
             console.log("No ingreso un código de barras");
         }
+
         else {
-            $scope.finder = false;
+            // Número de productos en la base de datos
             var numberOfProductos = $scope.productos.length;
+            // Número de productos en la lista de compras
             var numberOfArticulos = $scope.articulos.length;
-            i = 0;
+
+            // Busca código de barras
+            i=0;
             while (i < numberOfProductos && $scope.finder === false) {
                 if ($scope.codigoBarras === $scope.productos[i].codigoBarras) {
                     console.log("Producto encontrado.");
                     $scope.finder = true;
+
+                    // Si se encuentra el código se asignan las propiedades que tiene el producto en la base
+                    // de datos a un objeto nuevoArticulo  que se agregará al arreglo articulos[]
+                    $scope.nuevoArticulo.codigoBarras = $scope.codigoBarras;
+                    $scope.nuevoArticulo.producto = $scope.productos[i].nombre;
+                    $scope.nuevoArticulo.precioUnitario = $scope.productos[i].precioVenta;
+                    $scope.nuevoArticulo.precioMenudeo = $scope.productos[i].precioVenta;
+                    $scope.nuevoArticulo.precioMedio = $scope.productos[i].precioMedio;
+                    $scope.nuevoArticulo.minimoMedio = $scope.productos[i].minimoMedio;
+                    $scope.nuevoArticulo.precioMayoreo = $scope.productos[i].precioMayoreo;
+                    $scope.nuevoArticulo.minimoMayoreo = $scope.productos[i].minimoMayoreo;
+                    $scope.nuevoArticulo.cantidad = 1;
+                    $scope.nuevoArticulo.importe = $scope.productos[i].precioVenta;
+
+                    // Busca el código de barras en la lista de compras
+                    $scope.finder2 = false;
+                    j=0;
+                    while (j < numberOfArticulos && $scope.finder2 === false) {
+                        if ($scope.nuevoArticulo.codigoBarras === $scope.articulos[j].codigoBarras) {
+                            console.log("Ya está en lista");
+                            $scope.finder2 = true;
+                            $scope.articulos[j].cantidad = $scope.articulos[j].cantidad + 1;
+                            $scope.nuevoArticulo.cantidad = $scope.articulos[j].cantidad;
+
+                            // Aplica precio mayoreo
+                            if($scope.articulos[j].minimoMayoreo > 1    &&   $scope.articulos[j].cantidad >= $scope.articulos[j].minimoMayoreo){
+                                $scope.articulos[j].precioUnitario = $scope.nuevoArticulo.precioMayoreo;
+                                $scope.nuevoArticulo.precioUnitario = $scope.nuevoArticulo.precioMayoreo;
+                                $scope.articulos[j].importe = $scope.articulos[j].cantidad * $scope.nuevoArticulo.precioMayoreo;
+                            }
+                            // Aplica precio medio mayoreo
+                            else if($scope.articulos[j].minimoMedio > 1    &&   $scope.articulos[j].cantidad >= $scope.articulos[j].minimoMedio){
+                                $scope.articulos[j].precioUnitario = $scope.nuevoArticulo.precioMedio;
+                                $scope.nuevoArticulo.precioUnitario = $scope.nuevoArticulo.precioMedio;
+                                $scope.articulos[j].importe = $scope.articulos[j].cantidad * $scope.nuevoArticulo.precioMedio;
+                            }
+                            // Aplica precio menudeo
+                            else{
+                                $scope.articulos[j].importe = $scope.articulos[j].cantidad * $scope.nuevoArticulo.precioUnitario;
+                            }
+                            
+                            $scope.nuevoArticulo.importe = $scope.articulos[j].importe; 
+                        }
+                        j++;
+                    }
+
+                   //$scope.nuevoArticulo.importe = $scope.nuevoArticulo.precioUnitario * $scope.nuevoArticulo.cantidad;
+                   //$scope.total = $scope.total + $scope.nuevoArticulo.importe;
+
+                    // Calcula total
+                    j=0;
+                    $scope.total = 0;
+                    while(j<$scope.articulos.length){
+                        $scope.total = $scope.total + parseFloat($scope.articulos[j].importe);
+                        j++;
+                    }
+                    // Si el producto no se encuentra ya en la lista de compras anexa un nuevo articulo
+                    if ($scope.finder2 === false) {
+                        console.log("No está en lista");
+                        $scope.articulos.push($scope.nuevoArticulo);
+                        //Actualiza total
+                        $scope.total = $scope.total + parseFloat($scope.nuevoArticulo.importe);
+                        // Eliminamos propiedades del nuevoArticulo
+                        $scope.nuevoArticulo = {};
+                        $scope.carrito = "true";       
+                    }          
                 }
                 i++;
             }
-            if ($scope.finder == true) {
-                $scope.nuevoArticulo.codigoBarras = $scope.codigoBarras;
-                $scope.nuevoArticulo.producto = $scope.productos[i-1].nombre;
-                $scope.nuevoArticulo.precioUnitario = $scope.productos[i-1].precioVenta;
-                $scope.nuevoArticulo.cantidad = 1;
-                $scope.nuevoArticulo.importe = $scope.nuevoArticulo.precioUnitario * $scope.nuevoArticulo.cantidad;
-                $scope.total = $scope.total + $scope.nuevoArticulo.importe;
-                              
-                i = 0;
-                $scope.finder = false;
-                while (i < numberOfArticulos && $scope.finder === false) {
-                    if ($scope.nuevoArticulo.codigoBarras === $scope.articulos[i].codigoBarras) {
-                        console.log("Producto encontrado.");
-                        $scope.finder = true;
-                        $scope.articulos[i].cantidad = $scope.articulos[i].cantidad + 1;
-                        $scope.articulos[i].importe = $scope.articulos[i].importe + parseFloat($scope.nuevoArticulo.precioUnitario);
-                    }
-                    i++;
-                }
-                if ($scope.finder === false) {
-                    $scope.articulos.push($scope.nuevoArticulo);
-                    $scope.nuevoArticulo = {};
-                    $scope.carrito = "true";       
-                }
-                else {
-                    
-                }
-            }
-            else {
+            // Cuando no se encuentra el código de barras
+            if($scope.finder === false){
                 console.log("No se encontró el código de barras");
             }
         }
+        // Limpia el código de barras
         $scope.codigoBarras = "";
     };
+
     $scope.registrarVenta = function () {
         console.log("Cargando venta");
         //$http.post('/sale', { articulos: $scope.articulos });
