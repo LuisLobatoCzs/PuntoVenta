@@ -77,12 +77,15 @@ class HomeController extends Controller
             return view('home');
         }
         else{
+            $categorias = DB::table('categorias')
+                        ->orderBy('categoria')
+                        ->get();
             $productos = DB::table('productos')
                             ->where('status',1)
                             ->orderBy('nombre')
                             ->get();
             $totalProductos = $productos->count();
-            return view('products')->with(compact('productos','totalProductos'));
+            return view('products')->with(compact('categorias','productos','totalProductos'));
         }
     } 
 
@@ -92,16 +95,19 @@ class HomeController extends Controller
             return view('home');
         }
         else{
+            $categorias = DB::table('categorias')
+                        ->orderBy('categoria')
+                        ->get();
+            $totalCategorias = $categorias->count();
             $productos = DB::table('productos')
                             ->where('status',1)
                             ->where('stock','<=',env('LOW_STOCK'))
                             ->orderBy('nombre')
                             ->get();
             $totalProductos = $productos->count();
-            return view('bstock')->with(compact('productos','totalProductos'));
+            return view('bstock')->with(compact('categorias','totalCategorias','productos','totalProductos'));
         }
-    } 
-
+    }
     ////  pirdon =( 
 
     public function modifyE(Request $request){
@@ -147,7 +153,10 @@ class HomeController extends Controller
             $producto = DB::table('productos')
                             ->where('id_producto','like',$request->id)
                             ->get();
-            return view('modifyP')->with(compact('producto'));
+            $categorias = DB::table('categorias')
+                            ->orderBy('categoria')
+                            ->get();
+            return view('modifyP')->with(compact('producto','categorias'));
         }
     }
 
@@ -171,11 +180,15 @@ class HomeController extends Controller
                     'stock'=> $request->stock,
                     'stock_inicial'=> $request->stock
                 ]);
+            $categorias = DB::table('categorias')
+                        ->orderBy('categoria')
+                        ->get();
             $productos = DB::table('productos')
+                            ->where('status',1)
                             ->orderBy('nombre')
                             ->get();
             $totalProductos = $productos->count();
-            return view('products')->with(compact('productos','totalProductos'));
+            return view('products')->with(compact('categorias','productos','totalProductos'));
         }
     }
 
@@ -219,12 +232,15 @@ class HomeController extends Controller
                             'status' => 1
                         ]);
             }
+            $categorias = DB::table('categorias')
+                        ->orderBy('categoria')
+                        ->get();
             $productos = DB::table('productos')
                             ->where('status',1)
                             ->orderBy('nombre')
                             ->get();
             $totalProductos = $productos->count();
-            return view('products')->with(compact('productos','totalProductos'));
+            return view('products')->with(compact('categorias','productos','totalProductos'));
         }
     }
     public function deleteEmployee(Request $request){
@@ -282,7 +298,10 @@ class HomeController extends Controller
             return view('home');
         }
         else{
-            return view('addProducts');
+            $categorias = DB::table('categorias')
+                        ->orderBy('categoria')
+                        ->get();
+            return view('addProducts')->with(compact('categorias'));
         }
     } 
 
@@ -435,7 +454,7 @@ class HomeController extends Controller
 
     public function createJSON(){
         $consulta = DB::table('productos')
-                        ->select('codigoBarras', 'nombre', 'precioVenta', 'stock', 'unidadMedida')
+                        ->select('codigoBarras', 'nombre', 'precioVenta', 'stock', 'categoria')
                         ->where('status',1)
                         ->get();
         $total = $consulta->count();
@@ -447,7 +466,7 @@ class HomeController extends Controller
             $productos = $productos.'"nombre": "'.$consulta[$i]->nombre.'",';
             $productos = $productos.'"precioVenta": "'.$consulta[$i]->precioVenta.'",';
             $productos = $productos.'"stock": "'.$consulta[$i]->stock.'",';
-            $productos = $productos.'"unidadMedida": "'.$consulta[$i]->unidadMedida.'"';
+            $productos = $productos.'"categoria": "'.$consulta[$i]->categoria.'"';
             if($i == $total-1){
                 $productos = $productos.'}';
             }
@@ -748,5 +767,74 @@ class HomeController extends Controller
     public function shutdown () {
         return view('shutdown');
        // shell_exec("shutdown -s -f -t 60");
+    }
+
+    public function categories(){
+        $categorias = DB::table('categorias')
+                        ->orderBy('categoria')
+                        ->get();
+        if(Auth::user()->rol == 0){
+            return view('categories')->with(compact('categorias'));
+        }
+        else{
+            return view('home');
+        }
+    }
+
+    public function addCategorie(Request $request){
+        DB::table('categorias')
+            ->insert([
+                'categoria' => $request->categorie
+            ]);
+        $categorias = DB::table('categorias')
+            ->orderBy('categoria')
+            ->get();
+        return view('categories')->with(compact('categorias'));
+    }
+    public function updateCategorie(Request $request){
+        $actual = DB::table('categorias')
+                    ->where('id', $request->id)
+                    ->first();
+        $actual = $actual->categoria;
+
+        DB::table('productos')
+            ->where('categoria', $actual)
+            ->update([
+                'categoria' => $request->categorie
+            ]);
+
+        DB::table('categorias')
+            ->where('id', $request->id)
+            ->update([
+                'categoria' => $request->categorie
+            ]);
+
+        $categorias = DB::table('categorias')
+            ->orderBy('categoria')
+            ->get();
+
+        return view('categories')->with(compact('categorias'));
+    }
+    public function deleteCategorie(Request $request){
+        $categorie = DB::table('categorias')
+                    ->where('id', $request->id)
+                    ->first();
+        $categorie = $categorie->categoria;
+
+        DB::table('productos')
+            ->where('categoria', $categorie)
+            ->update([
+                'categoria' => 'Sin clasificar'
+            ]);
+
+        DB::table('categorias')
+            ->where('id', $request->id)
+            ->delete();
+
+        $categorias = DB::table('categorias')
+            ->orderBy('categoria')
+            ->get();
+
+        return view('categories')->with(compact('categorias'));
     }
 }

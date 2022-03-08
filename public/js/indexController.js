@@ -1,14 +1,20 @@
 ﻿var app = angular.module("tiendita", [])
 .controller('controllerTiendita', function($scope,$http){
-    // Crea JSON con todos los productos de la base de datos
     $scope.productos = [];
+    // Crea JSON con todos los productos de la base de datos
     $scope.export = function () {
         $http.get('/productsJSON')
             .then(function (response) { $scope.productos = response.data.productos });
         console.log("Productos exportados");
     }
     /////////////////////////////////////////////////////////
-    
+    // JSON con productos de bajo inventario
+    $scope.exportLow = function () {
+        $http.get('/lowProductsJSON')
+            .then(function (response) { $scope.productos = response.data.productos });
+        console.log("Productos exportados");
+    }
+
     $scope.total = 0;
     $scope.formatoDecimal = function(valor) {
         return isNaN(valor) ? valor : parseFloat(valor).toFixed(2);
@@ -19,7 +25,7 @@
         Swal.fire({
             html: '<h1>http://'+ip+'</h1>',
             showDenyButton: true,
-            denyButtonText: 'Apagar servidor',
+            denyButtonText: '<i class="fas fa-power-off"></i> Apagar servidor',
         })
         .then((result) => {
             if (result.isDenied) {
@@ -438,122 +444,128 @@
         $scope.barcode = "";
     }
 
-    $scope.catBebidas = false;
-    $scope.catEmbutidos = false;
-    $scope.catLacteos = false;
-    $scope.catDulceria = false;
-    $scope.catSemillas = false;
-    $scope.catDetergentes = false;
-    $scope.catFarmacia = false;
-    $scope.catMascotas = false;
-    $scope.catAbarrotes = true;
-
+    $scope.catActual = "";
+    $scope.contaActual = 0;
+    $scope.listaActual = [];
     $scope.setCategoria = function (categoria) {
-        switch (categoria){
-            case 1:
-                $scope.catBebidas = true;
-                $scope.catEmbutidos = false;
-                $scope.catLacteos = false;
-                $scope.catDulceria = false;
-                $scope.catSemillas = false;
-                $scope.catDetergentes = false;
-                $scope.catFarmacia = false;
-                $scope.catMascotas = false;
-                $scope.catAbarrotes = false;
-                break;
-            case 2:
-                $scope.catBebidas = false;
-                $scope.catEmbutidos = true;
-                $scope.catLacteos = false;
-                $scope.catDulceria = false;
-                $scope.catSemillas = false;
-                $scope.catDetergentes = false;
-                $scope.catFarmacia = false;
-                $scope.catMascotas = false;
-                $scope.catAbarrotes = false;
-                break;
-            case 3:
-                $scope.catBebidas = false;
-                $scope.catEmbutidos = false;
-                $scope.catLacteos = true;
-                $scope.catDulceria = false;
-                $scope.catSemillas = false;
-                $scope.catDetergentes = false;
-                $scope.catFarmacia = false;
-                $scope.catMascotas = false;
-                $scope.catAbarrotes = false;
-                break;
-            case 4:
-                $scope.catBebidas = false;
-                $scope.catEmbutidos = false;
-                $scope.catLacteos = false;
-                $scope.catDulceria = true;
-                $scope.catSemillas = false;
-                $scope.catDetergentes = false;
-                $scope.catFarmacia = false;
-                $scope.catMascotas = false;
-                $scope.catAbarrotes = false;
-                break;
-            case 5:
-                $scope.catBebidas = false;
-                $scope.catEmbutidos = false;
-                $scope.catLacteos = false;
-                $scope.catDulceria = false;
-                $scope.catSemillas = true;
-                $scope.catDetergentes = false;
-                $scope.catFarmacia = false;
-                $scope.catMascotas = false;
-                $scope.catAbarrotes = false;
-                break;
-            case 6:
-                $scope.catBebidas = false;
-                $scope.catEmbutidos = false;
-                $scope.catLacteos = false;
-                $scope.catDulceria = false;
-                $scope.catSemillas = false;
-                $scope.catDetergentes = true;
-                $scope.catFarmacia = false;
-                $scope.catMascotas = false;
-                $scope.catAbarrotes = false;
-                break;
-            case 7:
-                $scope.catBebidas = false;
-                $scope.catEmbutidos = false;
-                $scope.catLacteos = false;
-                $scope.catDulceria = false;
-                $scope.catSemillas = false;
-                $scope.catDetergentes = false;
-                $scope.catFarmacia = true;
-                $scope.catMascotas = false;
-                $scope.catAbarrotes = false;
-                break;  
-            case 8:
-                $scope.catBebidas = false;
-                $scope.catEmbutidos = false;
-                $scope.catLacteos = false;
-                $scope.catDulceria = false;
-                $scope.catSemillas = false;
-                $scope.catDetergentes = false;
-                $scope.catFarmacia = false;
-                $scope.catMascotas = true;
-                $scope.catAbarrotes = false;
-                break;  
-            case 9:
-                $scope.catBebidas = false;
-                $scope.catEmbutidos = false;
-                $scope.catLacteos = false;
-                $scope.catDulceria = false;
-                $scope.catSemillas = false;
-                $scope.catDetergentes = false;
-                $scope.catFarmacia = false;
-                $scope.catMascotas = false;
-                $scope.catAbarrotes = true;
-                break;
-        }
+        $scope.listaActual = [];
+        $scope.catActual = categoria;
+        angular.forEach($scope.productos,function(value, key){
+            if(value.categoria == categoria){
+                $scope.listaActual.push(value);
+            }
+        });
+    }
+    $scope.setCategoriaBaja = function (categoria) {
+        $scope.listaActual = [];
+        $scope.catActual = categoria;
+        angular.forEach($scope.productos,function(value, key){
+            if(value.categoria == categoria){
+                $scope.listaActual.push(value);
+            }
+        });
     }
 
     $scope.barcodeSize = 75;
     $scope.barcodeSizeFactor = 1;
     $scope.barcodeOrientation = "horizontal";
     $scope.barcodeName = true;
-});
+
+    $scope.agregarCategoria = async function() {
+        const { value: categoria } = await Swal.fire({
+            title: 'Agregar categoría',
+            input: 'text',
+            inputPlaceholder: 'Ingresa nombre de categoría',           
+            showCloseButton: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            focusConfirm: false,
+            confirmButtonText: 'Agregar',
+            cancelButtonText: 'Cancelar',
+            inputValidator: (value) => {
+                if (!value) {
+                  return 'Ingresa un nombre de categoría'
+                }
+            }
+        })
+        if (categoria) {
+            $http({
+                method: 'POST',
+                url: '/addCategorie',
+                params: {
+                    data: JSON.stringify($scope.articulos),
+                    categorie: categoria,
+                }
+            })
+            .then(function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Listo',
+                    text: 'Categoría anexada',
+                    showConfirmButton: false,
+                })
+                .then(
+                    setTimeout(function(){
+                        window.location.replace('/categories')},500)
+                )
+            }
+            ,function() { 
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Hey!',
+                    text: 'La categoría ya estaba en la lista',
+                })
+            })
+        }
+    }
+
+    $scope.editarCategoria = async function(id, categoriaActual) {
+        const { value: categoria } = await Swal.fire({
+            title: 'Editar categoría',
+            input: 'text',
+            inputPlaceholder: 'Ingresa nombre de categoría',
+            inputValue: categoriaActual,        
+            showCloseButton: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            focusConfirm: false,
+            confirmButtonText: 'Actualizar',
+            cancelButtonText: 'Cancelar',
+            inputValidator: (value) => {
+                if (!value) {
+                  return 'Ingresa un nombre de categoría'
+                }
+            }
+        })
+        if (categoria) {
+            $http({
+                method: 'POST',
+                url: '/updateCategorie',
+                params: {
+                    data: JSON.stringify($scope.articulos),
+                    id: id,
+                    categorie: categoria,
+                }
+            })
+            .then(function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Listo',
+                    text: 'Categoría actualizada',
+                    showConfirmButton: false,
+                })
+                .then(
+                    setTimeout(function(){
+                        window.location.replace('/categories')},500)
+                )
+            }
+            ,function() { 
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Opps...',
+                    text: 'Asegurate de no ingresar nombres duplicados',
+                })
+            })
+        }
+    }
+ });

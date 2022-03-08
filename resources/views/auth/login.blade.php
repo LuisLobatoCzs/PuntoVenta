@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <div class="row justify-content-center">
                                 <div class="col-11 text-right">
-                                    <button class="btn btn-info btn-block">Iniciar sesión</button>                                
+                                    <button class="btn btn-info btn-block"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>                                
                                 </div>
                             </div>
                         </div>

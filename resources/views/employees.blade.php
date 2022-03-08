@@ -13,7 +13,12 @@
             <h4>Administrar empleados</h4>
         </div>
         <div class="col-12 col-md-3 text-center">
-            <a href="/addEmployees"><button class="btn btn-warning col-10">Agregar Empleado</button></a>
+            <a href="/addEmployees">
+                <button class="btn btn-warning col-10">
+                    <i class="fas fa-plus"></i>
+                    Agregar Empleado
+                </button>
+            </a>
         </div>   
     </div>
     <br><br> 
@@ -38,7 +43,14 @@
                                     <td>'.$empleados[$i]->user.'</td>
                                     <td>'.$empleados[$i]->email.'</td>
                                     <td>'.$empleados[$i]->phone.'</td>
-                                    <td class="text-center"><a href="/modifyE?id='.$empleados[$i]->id.'"><button class="btn btn-info">Modificar</button></a></td>
+                                    <td class="text-center">
+                                        <a href="/modifyE?id='.$empleados[$i]->id.'">
+                                            <button class="btn btn-info">
+                                                <i class="fas fa-pen"></i>
+                                                Editar
+                                            </button>
+                                        </a>
+                                    </td>
                                 </tr>
                             ';
                             $i++;

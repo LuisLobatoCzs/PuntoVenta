@@ -75,10 +75,16 @@ Route::get('/reports','HomeController@reports')->name('reports');
 
 Route::get('/bstock','HomeController@bstock')->name('bstock');
 
+Route::get('/categories','HomeController@categories')->name('categories');
+
+Route::post('/addCategorie','HomeController@addCategorie')->name('addCategorie');
+Route::post('/updateCategorie','HomeController@updateCategorie')->name('updateCategorie');
+Route::get('/deleteCategorie','HomeController@deleteCategorie')->name('deleteCategorie');
+
 //Route::get('/productsJSON','HomeController@createJSON')->name('productsJSON');
 Route::get('/productsJSON', function() {
     $consulta = DB::table('productos')
-                        ->select('codigoBarras', 'nombre', 'precioCompra', 'precioVenta', 'precioMedio', 'minimoMedio', 'precioMayoreo', 'minimoMayoreo', 'stock', 'unidadMedida')
+                        ->select('id_producto','codigoBarras', 'nombre', 'precioCompra', 'precioVenta', 'precioMedio', 'minimoMedio', 'precioMayoreo', 'minimoMayoreo', 'stock', 'categoria', 'stock_inicial')
                         ->where('status',1)
                         ->get();
     $total = $consulta->count();
@@ -86,6 +92,7 @@ Route::get('/productsJSON', function() {
     $productos='{ "productos": [';
     for($i=0; $i<$total; $i++){
         $productos = $productos.'{';
+        $productos = $productos.'"id_producto": "'.$consulta[$i]->id_producto.'",';
         $productos = $productos.'"codigoBarras": "'.$consulta[$i]->codigoBarras.'",';
         $productos = $productos.'"nombre": "'.$consulta[$i]->nombre.'",';
         $productos = $productos.'"precioCompra": "'.$consulta[$i]->precioCompra.'",';
@@ -95,7 +102,42 @@ Route::get('/productsJSON', function() {
         $productos = $productos.'"precioMayoreo": "'.$consulta[$i]->precioMayoreo.'",';
         $productos = $productos.'"minimoMayoreo": "'.$consulta[$i]->minimoMayoreo.'",';
         $productos = $productos.'"stock": "'.$consulta[$i]->stock.'",';
-        $productos = $productos.'"unidadMedida": "'.$consulta[$i]->unidadMedida.'"';
+        $productos = $productos.'"stock_inicial": "'.$consulta[$i]->stock_inicial.'",';
+        $productos = $productos.'"categoria": "'.$consulta[$i]->categoria.'"';
+        if($i == $total-1){
+            $productos = $productos.'}';
+        }
+        else{
+            $productos = $productos.'},';
+        }
+    }
+    $productos = $productos.'] }';
+    return $productos;
+});
+Route::get('/lowProductsJSON', function() {
+    $consulta = DB::table('productos')
+                        ->select('id_producto','codigoBarras', 'nombre', 'precioCompra', 'precioVenta', 'precioMedio', 'minimoMedio', 'precioMayoreo', 'minimoMayoreo', 'stock', 'categoria', 'stock_inicial')
+                        ->where('status',1)
+                        ->where('stock','<=',env('LOW_STOCK'))
+                        ->orderBy('nombre')
+                        ->get();
+    $total = $consulta->count();
+    
+    $productos='{ "productos": [';
+    for($i=0; $i<$total; $i++){
+        $productos = $productos.'{';
+        $productos = $productos.'"id_producto": "'.$consulta[$i]->id_producto.'",';
+        $productos = $productos.'"codigoBarras": "'.$consulta[$i]->codigoBarras.'",';
+        $productos = $productos.'"nombre": "'.$consulta[$i]->nombre.'",';
+        $productos = $productos.'"precioCompra": "'.$consulta[$i]->precioCompra.'",';
+        $productos = $productos.'"precioVenta": "'.$consulta[$i]->precioVenta.'",';
+        $productos = $productos.'"precioMedio": "'.$consulta[$i]->precioMedio.'",';
+        $productos = $productos.'"minimoMedio": "'.$consulta[$i]->minimoMedio.'",';
+        $productos = $productos.'"precioMayoreo": "'.$consulta[$i]->precioMayoreo.'",';
+        $productos = $productos.'"minimoMayoreo": "'.$consulta[$i]->minimoMayoreo.'",';
+        $productos = $productos.'"stock": "'.$consulta[$i]->stock.'",';
+        $productos = $productos.'"stock_inicial": "'.$consulta[$i]->stock_inicial.'",';
+        $productos = $productos.'"categoria": "'.$consulta[$i]->categoria.'"';
         if($i == $total-1){
             $productos = $productos.'}';
         }

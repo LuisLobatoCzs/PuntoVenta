@@ -113,15 +113,13 @@
                                 <div class="col-lg-7 col-xl-7">
                                     <select id="categoria" name="categoria" class="form-control">
                                         <option selected value="<?php echo $producto[0]->categoria;?>"><?php echo $producto[0]->categoria;?></option>
-                                        <option value="Bebidas">Bebidas</option>
-                                        <option value="Embutidos" >Embutidos</option>
-                                        <option value="Lácteos">Lácteos</option>
-                                        <option value="Dulcería">Dulcería</option>
-                                        <option value="Semillas">Semillas</option>
-                                        <option value="Detergentes">Detergentes</option>
-                                        <option value="Mascotas">Mascotas</option>
-                                        <option value="Farmacia" >Farmacia</option>
-                                        <option value="Abarrotes">Abarrotes</option>
+                                        <?php
+                                            foreach($categorias as $c){
+                                                echo '
+                                                    <option value="'.$c->categoria.'">'.$c->categoria.'</option>
+                                                ';
+                                            }
+                                        ?> 
                                     </select>
                                 </div>
                             </div>

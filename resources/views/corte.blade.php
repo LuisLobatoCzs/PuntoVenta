@@ -10,10 +10,13 @@
     <br><br>
     <div class="row justify-content-center centraY">
         <div class="col-12 col-md-8 text-center">
-            <h1>Ventas actuales $<?php echo $saldo; ?></h1>
+            <h1>Pendiente de corte $<?php echo $saldo; ?></h1>
         </div>
         <div class="col-12 col-md-3 text-center">
-            <button ng-click="corte()" class="btn btn-warning col-10">Corte de caja</button>
+            <button ng-click="corte()" class="btn btn-warning col-10">
+                <i class="fas fa-cut"></i>
+                Corte de caja
+            </button>
         </div>     
     </div>
     <?php 

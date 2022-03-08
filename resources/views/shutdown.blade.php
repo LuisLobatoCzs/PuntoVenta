@@ -87,6 +87,8 @@
         <?php
             // Cierra sesión
             Auth::logout();
+            // Detiene Apache para prevenir errores en la base de datos
+            shell_exec('start c:/xampp/xampp_stop.exe');
             // Apaga servidor
             shell_exec('shutdown -s -f -t 10');  
             // Redirecciona al usuario remoto luego de 5s.
