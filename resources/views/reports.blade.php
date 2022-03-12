@@ -15,7 +15,7 @@
         <div class="col-12 col-md-2 text-center">
             <a href="/addExpenses">
                 <button class="btn btn-warning col-12">
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fas fa-exchange-alt"></i>
                     Transacciones
                 </button>
             </a>
